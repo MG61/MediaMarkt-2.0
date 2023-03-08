@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1030181747159",
+    "project_id": "mediamarkt-87e16",
+    "storage_bucket": "mediamarkt-87e16.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1030181747159:android:bf1971179b4c37dc0bf392",
+        "android_client_info": {
+          "package_name": "com.example.mediamarkt"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1030181747159-ql61m5csrioemcv43hko6ge0ulf3qflj.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.mediamarkt",
+            "certificate_hash": "1fc0452f2c912337bdbab3c06894b091a2f5985d"
+          }
+        },
+        {
+          "client_id": "1030181747159-35f05tibvdn5rvdsirimo6vqfav053v2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD4sEeNXHu2wrffYv70UN3Sm-eTauZi-Gc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1030181747159-35f05tibvdn5rvdsirimo6vqfav053v2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

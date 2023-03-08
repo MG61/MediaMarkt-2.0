@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Theme.AppCompat.NoActionBar"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".Navigation.Home"
+    tools:ignore="SpeakableTextPresentCheck">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/mainnamecard"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            android:layout_gravity="fill"
+            android:layout_margin="8dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <TextView
+                android:id="@+id/maintexthome"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ropa_sans"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="7dp"
+                android:text="Ваше имя"
+                android:textAlignment="center"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/provtext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/ropa_sans"
+                android:layout_marginRight="15dp"
+                android:layout_marginTop="10dp"
+                android:layout_gravity="right"
+                android:text="Что-то присмотрел?"
+                android:textSize="16dp"
+                android:textStyle="bold"
+                android:textColor="#2e93e3" />
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/qr"
+            android:layout_width="match_parent"
+            android:layout_height="150dp"
+            android:layout_gravity="fill"
+            android:layout_margin="8dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="15dp"
+                android:fontFamily="@font/ropa_sans"
+                android:text="Бонусная карта"
+                android:textAlignment="center"
+                android:textSize="22dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/numbercard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="120dp"
+                android:fontFamily="@font/ropa_sans"
+                android:text=""
+                android:textColor="#2e93e3"
+                android:textAlignment="center"
+                android:textSize="16dp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/qrimage"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="right" />
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/allcat_and_all"
+            android:layout_width="match_parent"
+            android:layout_height="235dp"
+            android:layout_gravity="fill"
+            android:layout_margin="8dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
+        </androidx.cardview.widget.CardView>
+    </LinearLayout>
+</ScrollView>
