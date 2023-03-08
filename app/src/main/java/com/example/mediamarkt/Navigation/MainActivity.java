@@ -42,7 +42,6 @@ import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity /*implements View.OnClickListener*/ {//View.OnClickListener - это для метода кнопки категорий
     ImageView backbtn;
-    public CardView categories1, categories2, categories3, categories4, categories5, categories6, categories7, categories8;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

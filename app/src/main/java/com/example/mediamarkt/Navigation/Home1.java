@@ -13,7 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.example.babystore.CatFire.SoftCatFire;
+import com.example.mediamarkt.CatFire.SoftCatFire;
 import com.example.mediamarkt.CatFire.ActiveCatFire;
 import com.example.mediamarkt.CatFire.CatFire1;
 import com.example.mediamarkt.CatFire.EducationalCatFire;

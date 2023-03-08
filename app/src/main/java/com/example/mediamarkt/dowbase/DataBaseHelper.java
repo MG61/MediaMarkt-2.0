@@ -1,8 +1,8 @@
 package com.example.mediamarkt.dowbase;
 
 
-import static com.example.babystore.RecyclerAllProduct.MyDataBase.DATABASE_NAME;
-import static com.example.babystore.RecyclerAllProduct.MyDataBase.TABLE_NAME;
+import static com.example.mediamarkt.RecyclerAllProduct.MyDataBase.DATABASE_NAME;
+import static com.example.mediamarkt.RecyclerAllProduct.MyDataBase.TABLE_NAME;
 
 import android.content.Context;
 import android.database.SQLException;

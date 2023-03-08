@@ -1,4 +1,4 @@
-package com.example.babystore.CatFire;
+package com.example.mediamarkt.CatFire;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,15 +11,15 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.babystore.CatFire.CartActivity.CartActivity;
-import com.example.babystore.CatFire.Model.CartModel;
-import com.example.babystore.CatFire.Model.Model;
-import com.example.babystore.CatFire.adapter.MyToyAdapter;
-import com.example.babystore.CatFire.eventbus.MyUpdateCartEvent;
-import com.example.babystore.CatFire.listener.LoadListener;
-import com.example.babystore.CatFire.listener.LoadListenerCart;
-import com.example.babystore.CatFire.utils.SpaceItemDecoration;
-import com.example.babystore.R;
+import com.example.mediamarkt.CatFire.CartActivity.CartActivity;
+import com.example.mediamarkt.CatFire.Model.CartModel;
+import com.example.mediamarkt.CatFire.Model.Model;
+import com.example.mediamarkt.CatFire.adapter.MyToyAdapter;
+import com.example.mediamarkt.CatFire.eventbus.MyUpdateCartEvent;
+import com.example.mediamarkt.CatFire.listener.LoadListener;
+import com.example.mediamarkt.CatFire.listener.LoadListenerCart;
+import com.example.mediamarkt.CatFire.utils.SpaceItemDecoration;
+import com.example.mediamarkt.R;
 import com.google.android.material.snackbar.Snackbar;
 
 import com.google.firebase.database.DataSnapshot;

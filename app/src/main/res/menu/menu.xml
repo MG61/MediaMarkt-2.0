@@ -8,10 +8,10 @@
         android:id="@+id/catalog1"
         android:title="@string/menu_catalog"
         android:icon="@drawable/categories" />
-    <!--    <item-->
-    <!--        android:id="@+id/basket1"-->
-    <!--        android:title="@string/menu_basket"-->
-    <!--        android:icon="@drawable/basket"/>-->
+    <item
+        android:id="@+id/basket1"
+        android:title="@string/menu_basket"
+        android:icon="@drawable/basket"/>
     <item
         android:id="@+id/profile"
         android:title="@string/menu_account"

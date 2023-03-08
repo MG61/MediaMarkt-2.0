@@ -2,7 +2,7 @@ package com.example.mediamarkt.RecyclerAllProduct;
 
 import static android.os.Build.ID;
 
-import static com.example.babystore.RecyclerAllProduct.MyDataBase.COLUMN_ID;
+import static com.example.mediamarkt.RecyclerAllProduct.MyDataBase.COLUMN_ID;
 
 import android.content.Context;
 import android.content.Intent;
