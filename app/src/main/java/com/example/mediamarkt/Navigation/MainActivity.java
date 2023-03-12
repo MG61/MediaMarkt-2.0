@@ -29,7 +29,6 @@ import android.widget.Toast;
 import android.widget.Toolbar;
 
 import com.example.mediamarkt.R;
-import com.example.mediamarkt.dowbase.DataBaseHelper;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -51,35 +50,5 @@ public class MainActivity extends AppCompatActivity /*implements View.OnClickLis
         NavController navController = Navigation.findNavController(this, R.id.fragment);//Навигация
         AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home1, R.id.catalog1, R.id.basket1, R.id.profile).build();//Навигация
         NavigationUI.setupWithNavController(navView, navController);//Навигация
-        DataBaseHelper myDbHelper = new DataBaseHelper(this);
-        myDbHelper = new DataBaseHelper(this);
-
-        try {
-            myDbHelper.createDataBase();
-        } catch (IOException ioe) {
-            throw new Error("Unable to create database");
-        }
-
-        try {
-            myDbHelper.openDataBase();
-        } catch (SQLException sqle) {
-            throw sqle;
-        }
     }
-
-
-//    @Override
-//    public void onClick(View v) {
-//        Intent i;
-//        switch (v.getId()) {
-//            case R.id.categor1:
-//                i = new Intent(this, Categories1.class);
-//                startActivity(i);
-//                break;
-//            case R.id.categor2:
-//                i = new Intent(this, Categories2.class);
-//                startActivity(i);
-//                break;
-//        }
-//    }
 };

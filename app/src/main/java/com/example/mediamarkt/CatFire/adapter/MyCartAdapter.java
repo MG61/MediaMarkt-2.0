@@ -131,7 +131,6 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
         @BindView(R.id.txtQuantity)
         TextView txtQuantity;
 
-
         Unbinder unbinder;
 
         public MyCartViewHolder(@NonNull View itemView) {
