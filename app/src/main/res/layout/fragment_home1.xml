@@ -6,7 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white"
-    tools:context=".Home1"
+    tools:context=".Navigation.Home1"
     tools:ignore="SpeakableTextPresentCheck">
 
     <LinearLayout
@@ -14,10 +14,9 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
-            android:layout_height="200dp"
+            android:layout_height="400dp"
             android:background="@color/white"
             android:clipToPadding="false"
             android:overScrollMode="never">
@@ -29,7 +28,7 @@
 
                 <ImageView
                     android:layout_width="match_parent"
-                    android:layout_height="200dp"
+                    android:layout_height="400dp"
                     android:background="@drawable/maincircle"
                     android:clipToOutline="true"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -38,25 +37,139 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                <HorizontalScrollView
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    tools:ignore="MissingConstraints"
+                    android:scrollbars="none">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="10dp"
-                    android:orientation="vertical"
+                    android:orientation="horizontal"
                     tools:ignore="MissingConstraints">
 
-                    <ViewFlipper
-                        android:id="@+id/viewFlipper1"
-                        android:layout_width="wrap_content"
-                        android:layout_height="170dp"
-                        android:layout_marginTop="15dp"
-                        android:autoStart="true"
-                        android:flipInterval="3000"
-                        android:inAnimation="@anim/flipin"
-                        android:outAnimation="@anim/flipout">
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/firstcardskidka"
+                        android:layout_width="380dp"
+                        android:layout_height="300dp"
+                        android:layout_gravity="fill"
+                        android:layout_margin="8dp"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp">
 
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="260dp"
+                            android:fontFamily="@font/ropa_sans"
+                            android:text="Бонусная карта"
+                            android:textAlignment="center"
+                            android:textSize="22dp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:layout_marginTop="120dp"
+                            android:fontFamily="@font/ropa_sans"
+                            android:text=""
+                            android:textColor="#2e93e3"
+                            android:textAlignment="center"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        <ImageView
+                            android:layout_width="150dp"
+                            android:layout_height="150dp"
+                            android:layout_gravity="right" />
+                    </androidx.cardview.widget.CardView>
+
+                    <LinearLayout
+                        android:layout_width="380dp"
+                        android:layout_height="300dp"
+                        android:orientation="vertical">
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/secondcardskidka"
+                        android:layout_width="370dp"
+                        android:layout_height="145dp"
+                        android:layout_gravity="fill"
+                        android:foreground="?android:attr/selectableItemBackground"
+                        app:cardCornerRadius="8dp"
+                        app:cardElevation="8dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="350dp"
+                            android:layout_height="120dp"
+                            android:layout_gravity="top|center"
+                            android:src="@drawable/console"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="15dp"
+                            android:fontFamily="@font/ropa_sans"
+                            android:text="Консоли"
+                            android:textColor="#808080"
+                            android:textAlignment="center"
+                            android:textSize="16dp"
+                            android:textStyle="bold" />
+
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
+                            android:id="@+id/Thirdcardskidka"
+                            android:layout_width="370dp"
                             android:layout_height="145dp"
+                            android:layout_gravity="fill"
+                            android:layout_marginTop="10dp"
+                            android:foreground="?android:attr/selectableItemBackground"
+                            app:cardCornerRadius="8dp"
+                            app:cardElevation="8dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="vertical">
+
+                                <ImageView
+                                    android:layout_width="350dp"
+                                    android:layout_height="120dp"
+                                    android:layout_gravity="top|center"
+                                    android:src="@drawable/telefons"/>
+
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="15dp"
+                                    android:fontFamily="@font/ropa_sans"
+                                    android:text="Смартфоны"
+                                    android:textColor="#808080"
+                                    android:textAlignment="center"
+                                    android:textSize="16dp"
+                                    android:textStyle="bold" />
+
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+                </LinearLayout>
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="300dp"
                             app:cardBackgroundColor="@color/transparent"
                             app:cardElevation="0dp"
                             android:background="@drawable/cornerviewflipper"
@@ -64,10 +177,10 @@
 
                             <ImageView
                                 android:id="@+id/imageView1"
-                                android:layout_width="wrap_content"
-                                android:layout_height="150dp"
+                                android:layout_width="390dp"
+                                android:layout_height="match_parent"
                                 android:layout_gravity="center"
-                                android:src="@drawable/slide1" />
+                                android:src="@drawable/flip1"/>
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
@@ -80,14 +193,14 @@
 
                             <ImageView
                                 android:id="@+id/imageView2"
-                                android:layout_width="wrap_content"
+                                android:layout_width="390dp"
                                 android:layout_height="150dp"
                                 android:layout_gravity="center"
                                 android:src="@drawable/slide3" />
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:layout_width="wrap_content"
+                            android:layout_width="390dp"
                             android:layout_height="145dp"
                             app:cardBackgroundColor="@color/transparent"
                             app:cardElevation="0dp"
@@ -101,8 +214,41 @@
                                 android:layout_gravity="center"
                                 android:src="@drawable/slide2" />
                         </androidx.cardview.widget.CardView>
+                </LinearLayout>
+                </HorizontalScrollView>
 
-                    </ViewFlipper>
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/intsearch"
+                    android:layout_width="match_parent"
+                    android:layout_height="40dp"
+                    android:layout_gravity="fill"
+                    android:layout_margin="10dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="32dp"
+                    app:cardElevation="8dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="30dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="10dp"
+                            android:src="@drawable/ic_baseline_search_24" />
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:text="Поиск товаров"
+                            android:textSize="18dp"
+                            android:layout_marginStart="5dp"
+                            android:layout_marginTop="7dp" />
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
