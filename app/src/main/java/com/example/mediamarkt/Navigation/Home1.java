@@ -23,6 +23,7 @@ import com.example.mediamarkt.CatFire.LegoCatFire;
 import com.example.mediamarkt.CatFire.PuzzlesCatFire;
 import com.example.mediamarkt.CatFire.RadioCatFire;
 import com.example.mediamarkt.R;
+import com.example.mediamarkt.Search.AllSearch;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -34,14 +35,15 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-public class Home1 extends Fragment {
+public class Home1 extends Fragment{
 
     public final static int QRcodeWidth = 500;
     Bitmap bitmap;
     TextView maintexthome, numbercard, pricetextsheet22;
-    CardView qr, cat1home, cat2home, cat3home, cat4home, cat5home, cat6home, cat7home, cat8home;
+    CardView qr, intsearch;
     ImageView qrimage, imagesheet22;
     String code1 = "";
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,81 +54,15 @@ public class Home1 extends Fragment {
         qrimage = view.findViewById(R.id.qrimage);
         numbercard = view.findViewById(R.id.numbercard);
         qr = view.findViewById(R.id.qr);
-        imagesheet22 = view.findViewById(R.id.imagesheet22);
-        pricetextsheet22 = view.findViewById(R.id.pricetextsheet22);
-        cat1home = view.findViewById(R.id.cat1home);
-        cat2home = view.findViewById(R.id.cat2home);
-        cat3home = view.findViewById(R.id.cat3home);
-        cat4home = view.findViewById(R.id.cat4home);
-        cat5home = view.findViewById(R.id.cat5home);
-        cat6home = view.findViewById(R.id.cat6home);
-        cat7home = view.findViewById(R.id.cat7home);
-        cat8home = view.findViewById(R.id.cat8home);
-
-        CardView allcat = view.findViewById(R.id.allcat);
-        allcat.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), CatFire1.class);
-                startActivity(intent);
-            }
-        });
+        intsearch = view.findViewById(R.id.intsearch);
         checkname();
         checkcard();
         checkcard2();
-        cat1home.setOnClickListener(new View.OnClickListener() {
+
+        intsearch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), LegoCatFire.class);
-                startActivity(intent);
-            }
-        });
-        cat2home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), FunkoCatFire.class);
-                startActivity(intent);
-            }
-        });
-        cat3home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), RadioCatFire.class);
-                startActivity(intent);
-            }
-        });
-        cat4home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ActiveCatFire.class);
-                startActivity(intent);
-            }
-        });
-        cat5home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), HolidayCatFire.class);
-                startActivity(intent);
-            }
-        });
-        cat6home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), EducationalCatFire.class);
-                startActivity(intent);
-            }
-        });
-        cat7home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), PuzzlesCatFire.class);
-                startActivity(intent);
-            }
-        });
-        cat8home.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), SoftCatFire.class);
+                Intent intent = new Intent(getActivity(), AllSearch.class);
                 startActivity(intent);
             }
         });

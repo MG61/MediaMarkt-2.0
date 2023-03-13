@@ -189,7 +189,6 @@ public class Basket1 extends Fragment {
         });
     }
 
-
     public void onCartSuccess(List<CartModel> cartModelList) {
         double sum = 0;
         for (CartModel cartModel : cartModelList) {

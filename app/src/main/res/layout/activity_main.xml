@@ -8,16 +8,15 @@
     tools:context=".Navigation.MainActivity"
     android:label="@string/menu_catalog">
 
-
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNavigationView"
         android:layout_width="match_parent"
         android:layout_height="70dp"
         android:background="@drawable/rounded"
-        app:itemIconTint="@color/nav_color"
-        app:itemTextColor="@color/nav_color"
+        app:itemIconTint="#ad2831"
+        app:itemTextColor="#ad2831"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:menu="@menu/menu" />
+        app:menu="@menu/menu"/>
 
     <fragment
         android:id="@+id/fragment"
