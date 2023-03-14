@@ -53,8 +53,6 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
     TextView txtTotal;
     @BindView(R.id.buyalltovar)
     ImageView buyalltovar;
-
-
     LoadListenerCart cartLoadListener;
 
     @Override
@@ -88,9 +86,7 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
         init();
         loadCartFromFirebase();
     }
-
     public int prov = 0;
-
 
     private void loadCartFromFirebase() {
 
@@ -117,7 +113,6 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
                                 overridePendingTransition(0, 0);
                                 prov = 0;
                             }
-
                         }
                     }
 

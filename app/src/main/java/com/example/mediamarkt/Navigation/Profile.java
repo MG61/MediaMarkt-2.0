@@ -71,10 +71,8 @@ public class Profile extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_profile, container, false);
-        name1 = (TextView) view.findViewById(R.id.name);
         nameprofilefirebase = (TextView) view.findViewById(R.id.nameprofilefirebase);
         telprofilefirebase = (TextView) view.findViewById(R.id.telprofilefirebase);
-        photoprofile = (ImageView) view.findViewById(R.id.photoprofile);
         exit = (Button) view.findViewById(R.id.exit);
         svyaz1 = view.findViewById(R.id.svyaz1);
         svyaz2 = view.findViewById(R.id.svyaz2);
@@ -105,31 +103,7 @@ public class Profile extends Fragment {
             }
         });
 
-        photoprofile.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                videoPlayer = view.findViewById(R.id.videoPlayer);
-                Glide.with(Profile.this)
-                        .asGif()
-                        .load(R.raw.znew1918)
-                        .apply(RequestOptions.diskCacheStrategyOf(DiskCacheStrategy.NONE))
-                        .listener(new RequestListener<GifDrawable>() {
-                            @Override
-                            public boolean onLoadFailed(@Nullable @org.jetbrains.annotations.Nullable GlideException e, Object model, Target<GifDrawable> target, boolean isFirstResource) {
-                                return false;
-                            }
-
-                            @Override
-                            public boolean onResourceReady(GifDrawable resource, Object model, Target<GifDrawable> target, DataSource dataSource, boolean isFirstResource) {
-                                resource.setLoopCount(1);
-                                return false;
-                            }
-                        })
-                        .into(videoPlayer);
-
-                videoPlayer.setVisibility(View.VISIBLE);
-            }
-        });
+        
         return view;
     }
 

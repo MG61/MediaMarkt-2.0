@@ -7,7 +7,7 @@
     <item
         android:id="@+id/catalog1"
         android:title="@string/menu_catalog"
-        android:icon="@drawable/categories" />
+        android:icon="@drawable/catalog1" />
     <item
         android:id="@+id/basket1"
         android:title="@string/menu_basket"

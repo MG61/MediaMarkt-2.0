@@ -327,7 +327,7 @@
 
         <ImageView
             android:layout_width="match_parent"
-            android:layout_height="10dp"
+            android:layout_height="70dp"
             android:src="@color/white"></ImageView>
     </LinearLayout>
 </ScrollView>

@@ -39,8 +39,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity /*implements View.OnClickListener*/ {//View.OnClickListener - это для метода кнопки категорий
-    ImageView backbtn;
+public class MainActivity extends AppCompatActivity  {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

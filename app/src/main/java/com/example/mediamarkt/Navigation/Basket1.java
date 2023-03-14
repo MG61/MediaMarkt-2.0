@@ -115,8 +115,9 @@ public class Basket1 extends Fragment {
                              Bundle savedInstanceState) {
         init();
         loadCartFromFirebase();
-
-        return inflater.inflate(R.layout.fragment_basket1, container, false);
+        View view = inflater.inflate(R.layout.fragment_basket1, container, false);
+        ButterKnife.bind(this, view);
+        return view;
     }
 
     public int prov = 0;
@@ -170,7 +171,7 @@ public class Basket1 extends Fragment {
     private void init() {
         ButterKnife.bind(getActivity());
 
-        cartLoadListener = (LoadListenerCart) Basket1.super.getActivity();
+//        cartLoadListener = thi;
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recycler_cart.setLayoutManager(layoutManager);
         recycler_cart.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
