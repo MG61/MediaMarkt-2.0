@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -67,9 +68,12 @@ import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Unbinder;
 
 
 public class Basket1 extends Fragment {
+
+    private Unbinder unbinder;
 
     @BindView(R.id.recycler_cart)
     RecyclerView recycler_cart;
@@ -81,6 +85,9 @@ public class Basket1 extends Fragment {
     TextView txtTotal;
     @BindView(R.id.buyalltovar)
     ImageView buyalltovar;
+
+    private DatabaseReference mDatabase;
+    private MyCartAdapter mAdapter;
 
 
     LoadListenerCart cartLoadListener;
@@ -115,13 +122,13 @@ public class Basket1 extends Fragment {
                              Bundle savedInstanceState) {
         init();
         loadCartFromFirebase();
+
         View view = inflater.inflate(R.layout.fragment_basket1, container, false);
-        ButterKnife.bind(this, view);
+//        unbinder = ButterKnife.bind(this, view);
         return view;
     }
 
     public int prov = 0;
-
 
     private void loadCartFromFirebase() {
 
@@ -143,9 +150,9 @@ public class Basket1 extends Fragment {
                         } else {
                             cartLoadListener.onCartFailed("Корзина пуста!");
                             if (prov == 1) {
-//                                finish();
-//                                startActivity(getActivity());
-//                                overridePendingTransition(0, 0);
+                                getActivity().finish();
+                                startActivity(getActivity().getIntent());
+                                getActivity().overridePendingTransition(0, 0);
                                 prov = 0;
                             }
 
@@ -169,26 +176,26 @@ public class Basket1 extends Fragment {
     }
 
     private void init() {
-        ButterKnife.bind(getActivity());
 
-//        cartLoadListener = thi;
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recycler_cart.setLayoutManager(layoutManager);
-        recycler_cart.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
+//        cartLoadListener = this.getActivity();
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+//        recycler_cart.setLayoutManager(layoutManager);
+//        recycler_cart.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
 
-        btnBack.setOnClickListener(v -> getActivity().finish());
-        buyalltovar.setOnClickListener(v -> {
-            AlertDialog dialog = new AlertDialog.Builder(getActivity())
-                    .setTitle("Оплата покупок")
-                    .setMessage("Хотите оплатить весь товар?")
-                    .setNegativeButton("Отмена", (dialog1, which) -> dialog1.dismiss())
-                    .setPositiveButton("Да", (dialog12, which) -> {
-                        deletefromFirebase();
-                        dialog12.dismiss();
-                    }).create();
-            dialog.show();
-        });
+//        btnBack.setOnClickListener(v -> getActivity().finish());
+//        buyalltovar.setOnClickListener(v -> {
+//            AlertDialog dialog = new AlertDialog.Builder(getActivity())
+//                    .setTitle("Оплата покупок")
+//                    .setMessage("Хотите оплатить весь товар?")
+//                    .setNegativeButton("Отмена", (dialog1, which) -> dialog1.dismiss())
+//                    .setPositiveButton("Да", (dialog12, which) -> {
+//                        deletefromFirebase();
+//                        dialog12.dismiss();
+//                    }).create();
+//            dialog.show();
+//        });
     }
+
 
     public void onCartSuccess(List<CartModel> cartModelList) {
         double sum = 0;

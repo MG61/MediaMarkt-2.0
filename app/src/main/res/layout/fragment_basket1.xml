@@ -6,6 +6,7 @@
     tools:context=".Navigation.Basket1">
 
 
+
     <LinearLayout
         android:id="@+id/panel"
         android:layout_width="match_parent"
