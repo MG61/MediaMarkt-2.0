@@ -13,15 +13,6 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
-import com.example.mediamarkt.CatFire.SoftCatFire;
-import com.example.mediamarkt.CatFire.ActiveCatFire;
-import com.example.mediamarkt.CatFire.CatFire1;
-import com.example.mediamarkt.CatFire.EducationalCatFire;
-import com.example.mediamarkt.CatFire.FunkoCatFire;
-import com.example.mediamarkt.CatFire.HolidayCatFire;
-import com.example.mediamarkt.CatFire.LegoCatFire;
-import com.example.mediamarkt.CatFire.PuzzlesCatFire;
-import com.example.mediamarkt.CatFire.RadioCatFire;
 import com.example.mediamarkt.R;
 import com.example.mediamarkt.Search.AllSearch;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -30,10 +21,6 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.zxing.BarcodeFormat;
-import com.google.zxing.MultiFormatWriter;
-import com.google.zxing.WriterException;
-import com.google.zxing.common.BitMatrix;
 
 public class Home1 extends Fragment {
 

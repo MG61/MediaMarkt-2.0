@@ -164,6 +164,7 @@ public class Auth extends AppCompatActivity {
                     return;
                 }
 
+                //Создание бонусной карты
                 String i1 = "", i2 = "", i3 = "", i4 = "";
                 Random r = new Random();
                 i1 = String.valueOf(r.nextInt(9999 - 1000 + 1) + 1000);
@@ -171,6 +172,11 @@ public class Auth extends AppCompatActivity {
                 i3 = String.valueOf(r.nextInt(9999 - 1000 + 1) + 1000);
                 i4 = String.valueOf(r.nextInt(9999 - 1000 + 1) + 1000);
                 String forcard = (i1 + " " + i2 + " " + i3 + " " + i4);
+
+                //Создание уровня карты
+                String LevelCard = "Начальный";
+
+
 //                Регистрация пользователя
                 auth.createUserWithEmailAndPassword(email.getText().toString(), pass.getText().toString())
                         .addOnSuccessListener(new OnSuccessListener<AuthResult>() {
@@ -182,6 +188,7 @@ public class Auth extends AppCompatActivity {
                                 user.setName(name.getText().toString());
                                 user.setPhone(phone.getText().toString());
                                 user.setCard(forcard);
+                                user.setLevel(LevelCard);
 
                                 users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user)

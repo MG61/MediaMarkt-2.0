@@ -15,14 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
 
-import com.example.mediamarkt.CatFire.ActiveCatFire;
 import com.example.mediamarkt.CatFire.CatFire1;
-import com.example.mediamarkt.CatFire.EducationalCatFire;
-import com.example.mediamarkt.CatFire.FunkoCatFire;
-import com.example.mediamarkt.CatFire.HolidayCatFire;
-import com.example.mediamarkt.CatFire.PuzzlesCatFire;
-import com.example.mediamarkt.CatFire.RadioCatFire;
-import com.example.mediamarkt.CatFire.SoftCatFire;
+import com.example.mediamarkt.CatFire.Categor.Console;
+import com.example.mediamarkt.CatFire.Categor.Game;
+import com.example.mediamarkt.CatFire.Categor.Headphones;
+import com.example.mediamarkt.CatFire.Categor.Komplectuyushie;
+import com.example.mediamarkt.CatFire.Categor.Laptop;
+import com.example.mediamarkt.CatFire.Categor.Microphone;
+import com.example.mediamarkt.CatFire.Categor.Smartphone;
 import com.example.mediamarkt.CatFire.Categor.VR;
 import com.example.mediamarkt.R;
 import com.example.mediamarkt.Search.AllSearch;
@@ -100,31 +100,31 @@ public class Catalog1 extends Fragment implements View.OnClickListener {
                 startActivity(i);
                 break;
             case R.id.categor2:
-                i = new Intent(getActivity(), FunkoCatFire.class);
+                i = new Intent(getActivity(), Console.class);
                 startActivity(i);
                 break;
             case R.id.categor3:
-                i = new Intent(getActivity(), RadioCatFire.class);
+                i = new Intent(getActivity(), Headphones.class);
                 startActivity(i);
                 break;
             case R.id.categor4:
-                i = new Intent(getActivity(), ActiveCatFire.class);
+                i = new Intent(getActivity(), Microphone.class);
                 startActivity(i);
                 break;
             case R.id.categor5:
-                i = new Intent(getActivity(), HolidayCatFire.class);
+                i = new Intent(getActivity(), Komplectuyushie.class);
                 startActivity(i);
                 break;
             case R.id.categor6:
-                i = new Intent(getActivity(), EducationalCatFire.class);
+                i = new Intent(getActivity(), Smartphone.class);
                 startActivity(i);
                 break;
             case R.id.categor7:
-                i = new Intent(getActivity(), PuzzlesCatFire.class);
+                i = new Intent(getActivity(), Game.class);
                 startActivity(i);
                 break;
             case R.id.categor8:
-                i = new Intent(getActivity(), SoftCatFire.class);
+                i = new Intent(getActivity(), Laptop.class);
                 startActivity(i);
                 break;
             case R.id.allcategor:

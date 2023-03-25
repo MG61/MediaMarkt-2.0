@@ -11,7 +11,7 @@
         android:id="@+id/panel"
         android:layout_width="match_parent"
         android:layout_height="?android:attr/actionBarSize"
-        android:background="#2e93e3"
+        android:background="@color/purple_200"
         android:orientation="horizontal"
         android:weightSum="16">
 

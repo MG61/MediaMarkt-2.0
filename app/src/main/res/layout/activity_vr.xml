@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CatFire.EducationalCatFire"
+    tools:context=".CatFire.Categor.VR"
     style="@style/AuthNoActionBar"
     android:id="@+id/mainLayout">
 
@@ -32,7 +32,8 @@
             android:layout_weight="11"
             android:textColor="@color/white"
             android:gravity="center"
-            android:text="ВИРТУАЛЬНАЯ РЕАЛЬНОСТЬ"
+            android:text="Виртуальная
+             реальность"
             android:textSize="22sp"
             android:layout_marginStart="25dp"
             android:textStyle="bold"></TextView>

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Profile">
+    tools:context=".Navigation.Profile">
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
@@ -70,7 +70,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginLeft="15dp"
-                                android:layout_marginTop="15dp"
+                                android:layout_marginTop="25dp"
                                 android:fontFamily="@font/ropa_sans"
                                 android:text="Бонусная карта"
                                 android:textAlignment="center"
@@ -90,6 +90,21 @@
                                 android:textSize="16dp"
                                 android:textStyle="bold" />
 
+                            <LinearLayout
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content">
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="15dp"
+                                android:layout_marginTop="130dp"
+                                android:fontFamily="@font/ropa_sans"
+                                android:text="Статус:"
+                                android:textAlignment="center"
+                                android:textColor="@color/purple_200"
+                                android:textSize="16dp"
+                                android:textStyle="bold" />
+
                             <TextView
                                 android:id="@+id/statuscard"
                                 android:layout_width="wrap_content"
@@ -97,17 +112,17 @@
                                 android:layout_marginLeft="15dp"
                                 android:layout_marginTop="130dp"
                                 android:fontFamily="@font/ropa_sans"
-                                android:text="Начальный"
+                                android:text=""
                                 android:textAlignment="center"
                                 android:textColor="@color/purple_200"
                                 android:textSize="16dp"
                                 android:textStyle="bold" />
-
+                            </LinearLayout>
                             <ImageView
                                 android:id="@+id/qrimage"
                                 android:layout_width="150dp"
                                 android:layout_height="150dp"
-                                android:layout_gravity="right" />
+                                android:layout_gravity="center|right" />
                         </androidx.cardview.widget.CardView>
 
                         <TextView

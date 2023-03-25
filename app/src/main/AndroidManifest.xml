@@ -17,57 +17,29 @@
         android:theme="@style/Theme.MediaMarkt"
         tools:targetApi="31">
         <activity
-            android:name=".Laptop"
+            android:name=".CatFire.Categor.Laptop"
             android:exported="false" />
         <activity
-            android:name=".Game"
+            android:name=".CatFire.Categor.Game"
             android:exported="false" />
         <activity
-            android:name=".Smartphone"
+            android:name=".CatFire.Categor.Smartphone"
             android:exported="false" />
         <activity
-            android:name=".Komplectuyushie"
+            android:name=".CatFire.Categor.Komplectuyushie"
             android:exported="false" />
         <activity
-            android:name=".Microphone"
+            android:name=".CatFire.Categor.Microphone"
             android:exported="false" />
         <activity
-            android:name=".Headphones"
+            android:name=".CatFire.Categor.Headphones"
             android:exported="false" />
         <activity
-            android:name=".Console"
-            android:exported="false"
-            android:label="@string/title_activity_console"
-            android:theme="@style/Theme.MediaMarkt.NoActionBar" />
+            android:name=".CatFire.Categor.Console"
+            android:exported="false" />
         <activity
             android:name=".CatFire.Categor.VR"
-            android:exported="false"
-            android:label="@string/title_activity_vr"
-            android:theme="@style/Theme.MediaMarkt.NoActionBar" />
-        <activity
-            android:name=".CatFire.SoftCatFire"
-            android:exported="false" />
-        <activity
-            android:name=".CatFire.PuzzlesCatFire"
-            android:exported="false" />
-        <activity
-            android:name=".CatFire.EducationalCatFire"
-            android:exported="false" />
-        <activity
-            android:name=".CatFire.HolidayCatFire"
-            android:exported="false" />
-        <activity
-            android:name=".CatFire.ActiveCatFire"
-            android:exported="false" />
-        <activity
-            android:name=".CatFire.RadioCatFire"
-            android:exported="false" />
-        <activity
-            android:name=".CatFire.FunkoCatFire"
-            android:exported="false" />
-        <activity
-            android:name=".CatFire.LegoCatFire"
-            android:exported="false" />
+            android:exported="false"/>
         <activity
             android:name=".CatFire.CartActivity.CartActivity"
             android:exported="false" />

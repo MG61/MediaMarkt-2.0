@@ -1,18 +1,26 @@
 package com.example.mediamarkt.Auth;
 
 public class User {
-    private String name, email, pass, phone, card;
+    private String name, email, pass, phone, card, level;
 
     public User() {
     }
 
-    public User(String email, String pass, String name, String phone, String card) {
+    public User(String name, String email, String pass, String phone, String card, String level) {
+        this.name = name;
         this.email = email;
         this.pass = pass;
-        this.name = name;
         this.phone = phone;
         this.card = card;
+        this.level = level;
+    }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getEmail() {
@@ -31,14 +39,6 @@ public class User {
         this.pass = pass;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -53,5 +53,13 @@ public class User {
 
     public void setCard(String card) {
         this.card = card;
+    }
+
+    public String getLevel() {
+        return level;
+    }
+
+    public void setLevel(String level) {
+        this.level = level;
     }
 }

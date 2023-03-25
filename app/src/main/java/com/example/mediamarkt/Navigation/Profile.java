@@ -63,11 +63,9 @@ public class Profile extends Fragment {
     public final static int QRcodeWidth = 500;
 
     Bitmap bitmap;
-    TextView maintexthome, numbercard, pricetextsheet22;
-    ImageView videoPlayer;
+    TextView numbercard, levelcard;
     Button exit;
-    TextView name1, nameprofilefirebase, telprofilefirebase;
-    ImageView photoprofile;
+    TextView  nameprofilefirebase, telprofilefirebase;
     RelativeLayout svyaz1, svyaz2;
     ImageView qrimage;
     CardView qr;
@@ -90,11 +88,13 @@ public class Profile extends Fragment {
         svyaz2 = view.findViewById(R.id.svyaz2);
         qrimage = view.findViewById(R.id.qrimage);
         numbercard = view.findViewById(R.id.numbercard);
+        levelcard = view.findViewById(R.id.statuscard);
         qr = view.findViewById(R.id.qr);
         checkname();
         checktel();
         checkcard();
         checkcard2();
+        levelcard();
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -145,6 +145,18 @@ public class Profile extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 telprofilefirebase.setText(String.valueOf(task.getResult().getValue()));
+            }
+        });
+    }
+
+    public void levelcard() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usuariosRef = rootRef.child("Пользователи");
+        usuariosRef.child(uid).child("level").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                levelcard.setText(String.valueOf(task.getResult().getValue()));
             }
         });
     }
