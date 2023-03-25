@@ -35,14 +35,13 @@ import com.google.zxing.MultiFormatWriter;
 import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 
-public class Home1 extends Fragment{
+public class Home1 extends Fragment {
 
     public final static int QRcodeWidth = 500;
     Bitmap bitmap;
-    TextView maintexthome, numbercard, pricetextsheet22;
+    TextView maintexthome, numbercard;
     CardView qr, intsearch;
-    ImageView qrimage, imagesheet22;
-    String code1 = "";
+    ImageView qrimage;
 
 
     @Override
@@ -56,8 +55,6 @@ public class Home1 extends Fragment{
         qr = view.findViewById(R.id.qr);
         intsearch = view.findViewById(R.id.intsearch);
         checkname();
-        checkcard();
-        checkcard2();
 
         intsearch.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -69,40 +66,6 @@ public class Home1 extends Fragment{
         return view;
     }
 
-    private Bitmap TextToImageEncode(String Value) throws WriterException {
-        BitMatrix bitMatrix;
-        try {
-            bitMatrix = new MultiFormatWriter().encode(
-                    Value,
-                    BarcodeFormat.DATA_MATRIX.QR_CODE,
-                    QRcodeWidth, QRcodeWidth, null
-            );
-
-        } catch (IllegalArgumentException Illegalargumentexception) {
-
-            return null;
-        }
-        int bitMatrixWidth = bitMatrix.getWidth();
-
-        int bitMatrixHeight = bitMatrix.getHeight();
-
-        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
-
-        for (int y = 0; y < bitMatrixHeight; y++) {
-            int offset = y * bitMatrixWidth;
-
-            for (int x = 0; x < bitMatrixWidth; x++) {
-
-                pixels[offset + x] = bitMatrix.get(x, y) ?
-                        getResources().getColor(R.color.black) : getResources().getColor(R.color.white);
-            }
-        }
-        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
-
-        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
-        return bitmap;
-    }
-
     public void checkname() {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
@@ -111,35 +74,6 @@ public class Home1 extends Fragment{
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 maintexthome.setText("Привет, " + String.valueOf(task.getResult().getValue()) + "!");
-            }
-        });
-    }
-
-    public void checkcard() {
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference usuariosRef = rootRef.child("Пользователи");
-        usuariosRef.child(uid).child("card").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                numbercard.setText(String.valueOf(task.getResult().getValue()));
-            }
-        });
-    }
-
-    public void checkcard2() {
-        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-        DatabaseReference usuariosRef = rootRef.child("Пользователи");
-        usuariosRef.child(uid).child("card").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DataSnapshot> task) {
-                try {
-                    bitmap = TextToImageEncode(String.valueOf(task.getResult().getValue()));
-                    qrimage.setImageBitmap(bitmap);
-                } catch (WriterException e) {
-                    e.printStackTrace();
-                }
             }
         });
     }

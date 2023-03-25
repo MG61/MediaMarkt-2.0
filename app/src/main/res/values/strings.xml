@@ -29,4 +29,6 @@
         <item>Головоломки</item>
         <item>Интерактивные игрушки</item>
     </string-array>
+    <string name="title_activity_vr">VR</string>
+    <string name="title_activity_console">Console</string>
 </resources>

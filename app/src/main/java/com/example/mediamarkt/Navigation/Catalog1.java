@@ -3,9 +3,6 @@ package com.example.mediamarkt.Navigation;
 import android.content.Intent;
 import android.os.Bundle;
 
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.LinearLayoutManager;
-
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
@@ -23,14 +20,12 @@ import com.example.mediamarkt.CatFire.CatFire1;
 import com.example.mediamarkt.CatFire.EducationalCatFire;
 import com.example.mediamarkt.CatFire.FunkoCatFire;
 import com.example.mediamarkt.CatFire.HolidayCatFire;
-import com.example.mediamarkt.CatFire.LegoCatFire;
 import com.example.mediamarkt.CatFire.PuzzlesCatFire;
 import com.example.mediamarkt.CatFire.RadioCatFire;
 import com.example.mediamarkt.CatFire.SoftCatFire;
+import com.example.mediamarkt.CatFire.Categor.VR;
 import com.example.mediamarkt.R;
 import com.example.mediamarkt.Search.AllSearch;
-import com.example.mediamarkt.Sqlcat.Allcategor;
-import com.example.mediamarkt.Sqlcat.DobSql;
 
 public class Catalog1 extends Fragment implements View.OnClickListener {
 
@@ -101,7 +96,7 @@ public class Catalog1 extends Fragment implements View.OnClickListener {
         Intent i;
         switch (v.getId()) {
             case R.id.categor1:
-                i = new Intent(getActivity(), LegoCatFire.class);
+                i = new Intent(getActivity(), VR.class);
                 startActivity(i);
                 break;
             case R.id.categor2:

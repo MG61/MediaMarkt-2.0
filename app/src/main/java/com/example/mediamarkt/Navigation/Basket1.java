@@ -15,7 +15,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.mediamarkt.CatFire.Model.CartModel;
+import com.example.mediamarkt.CatFire.Model.Model;
 import com.example.mediamarkt.CatFire.adapter.MyCartAdapter;
+import com.example.mediamarkt.CatFire.adapter.MyToyAdapter;
+import com.example.mediamarkt.CatFire.listener.LoadListener;
 import com.example.mediamarkt.R;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.database.DataSnapshot;
@@ -28,6 +31,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.ButterKnife;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -71,7 +75,7 @@ import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
-public class Basket1 extends Fragment {
+public class Basket1 extends Fragment implements LoadListener, LoadListenerCart{
 
     private Unbinder unbinder;
 
@@ -176,24 +180,25 @@ public class Basket1 extends Fragment {
     }
 
     private void init() {
+        ButterKnife.bind(this.getActivity());
 
-//        cartLoadListener = this.getActivity();
-//        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-//        recycler_cart.setLayoutManager(layoutManager);
-//        recycler_cart.addItemDecoration(new DividerItemDecoration(getActivity(), layoutManager.getOrientation()));
+        cartLoadListener = this;
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this.getActivity());
+        recycler_cart.setLayoutManager(layoutManager);
+        recycler_cart.addItemDecoration(new DividerItemDecoration(this.getActivity(), layoutManager.getOrientation()));
 
-//        btnBack.setOnClickListener(v -> getActivity().finish());
-//        buyalltovar.setOnClickListener(v -> {
-//            AlertDialog dialog = new AlertDialog.Builder(getActivity())
-//                    .setTitle("Оплата покупок")
-//                    .setMessage("Хотите оплатить весь товар?")
-//                    .setNegativeButton("Отмена", (dialog1, which) -> dialog1.dismiss())
-//                    .setPositiveButton("Да", (dialog12, which) -> {
-//                        deletefromFirebase();
-//                        dialog12.dismiss();
-//                    }).create();
-//            dialog.show();
-//        });
+        btnBack.setOnClickListener(v -> this.getActivity().finish());
+        buyalltovar.setOnClickListener(v -> {
+            AlertDialog dialog = new AlertDialog.Builder(getActivity())
+                    .setTitle("Оплата покупок")
+                    .setMessage("Хотите оплатить весь товар?")
+                    .setNegativeButton("Отмена", (dialog1, which) -> dialog1.dismiss())
+                    .setPositiveButton("Да", (dialog12, which) -> {
+                        deletefromFirebase();
+                        dialog12.dismiss();
+                    }).create();
+            dialog.show();
+        });
     }
 
 
@@ -207,8 +212,18 @@ public class Basket1 extends Fragment {
         recycler_cart.setAdapter(adapter);
     }
 
-
     public void onCartFailed(String message) {
+        Snackbar.make(mainLayout, message, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onLoadSuccess(List<Model> ModelList) {
+        MyToyAdapter adapter = new MyToyAdapter(getActivity(), ModelList, cartLoadListener);
+        recycler_cart.setAdapter(adapter);
+    }
+
+    @Override
+    public void onLoadFailed(String message) {
         Snackbar.make(mainLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 }

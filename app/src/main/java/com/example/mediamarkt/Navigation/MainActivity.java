@@ -39,7 +39,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.io.IOException;
 
-public class MainActivity extends AppCompatActivity  {
+public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

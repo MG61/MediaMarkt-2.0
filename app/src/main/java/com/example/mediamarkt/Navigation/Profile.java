@@ -3,6 +3,7 @@ package com.example.mediamarkt.Navigation;
 import static android.os.Build.VERSION.SDK_INT;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.graphics.ImageDecoder;
 import android.graphics.drawable.AnimatedImageDrawable;
 import android.net.Uri;
@@ -11,6 +12,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -46,6 +48,10 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.zxing.BarcodeFormat;
+import com.google.zxing.MultiFormatWriter;
+import com.google.zxing.WriterException;
+import com.google.zxing.common.BitMatrix;
 
 import org.w3c.dom.Text;
 
@@ -54,11 +60,17 @@ import java.io.IOException;
 
 public class Profile extends Fragment {
 
+    public final static int QRcodeWidth = 500;
+
+    Bitmap bitmap;
+    TextView maintexthome, numbercard, pricetextsheet22;
     ImageView videoPlayer;
     Button exit;
     TextView name1, nameprofilefirebase, telprofilefirebase;
     ImageView photoprofile;
     RelativeLayout svyaz1, svyaz2;
+    ImageView qrimage;
+    CardView qr;
 
     public static String PACKAGE_NAME;
 
@@ -76,8 +88,13 @@ public class Profile extends Fragment {
         exit = (Button) view.findViewById(R.id.exit);
         svyaz1 = view.findViewById(R.id.svyaz1);
         svyaz2 = view.findViewById(R.id.svyaz2);
+        qrimage = view.findViewById(R.id.qrimage);
+        numbercard = view.findViewById(R.id.numbercard);
+        qr = view.findViewById(R.id.qr);
         checkname();
         checktel();
+        checkcard();
+        checkcard2();
         exit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +120,7 @@ public class Profile extends Fragment {
             }
         });
 
-        
+
         return view;
     }
 
@@ -128,6 +145,69 @@ public class Profile extends Fragment {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 telprofilefirebase.setText(String.valueOf(task.getResult().getValue()));
+            }
+        });
+    }
+
+    private Bitmap TextToImageEncode(String Value) throws WriterException {
+        BitMatrix bitMatrix;
+        try {
+            bitMatrix = new MultiFormatWriter().encode(
+                    Value,
+                    BarcodeFormat.DATA_MATRIX.QR_CODE,
+                    QRcodeWidth, QRcodeWidth, null
+            );
+
+        } catch (IllegalArgumentException Illegalargumentexception) {
+
+            return null;
+        }
+        int bitMatrixWidth = bitMatrix.getWidth();
+
+        int bitMatrixHeight = bitMatrix.getHeight();
+
+        int[] pixels = new int[bitMatrixWidth * bitMatrixHeight];
+
+        for (int y = 0; y < bitMatrixHeight; y++) {
+            int offset = y * bitMatrixWidth;
+
+            for (int x = 0; x < bitMatrixWidth; x++) {
+
+                pixels[offset + x] = bitMatrix.get(x, y) ?
+                        getResources().getColor(R.color.black) : getResources().getColor(R.color.white);
+            }
+        }
+        Bitmap bitmap = Bitmap.createBitmap(bitMatrixWidth, bitMatrixHeight, Bitmap.Config.ARGB_4444);
+
+        bitmap.setPixels(pixels, 0, 500, 0, 0, bitMatrixWidth, bitMatrixHeight);
+        return bitmap;
+    }
+
+    public void checkcard() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usuariosRef = rootRef.child("Пользователи");
+        usuariosRef.child(uid).child("card").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                numbercard.setText(String.valueOf(task.getResult().getValue()));
+            }
+        });
+    }
+
+    public void checkcard2() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+        DatabaseReference usuariosRef = rootRef.child("Пользователи");
+        usuariosRef.child(uid).child("card").get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                try {
+                    bitmap = TextToImageEncode(String.valueOf(task.getResult().getValue()));
+                    qrimage.setImageBitmap(bitmap);
+                } catch (WriterException e) {
+                    e.printStackTrace();
+                }
             }
         });
     }

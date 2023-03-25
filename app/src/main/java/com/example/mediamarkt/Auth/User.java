@@ -6,7 +6,6 @@ public class User {
     public User() {
     }
 
-
     public User(String email, String pass, String name, String phone, String card) {
         this.email = email;
         this.pass = pass;
@@ -15,7 +14,6 @@ public class User {
         this.card = card;
 
     }
-
 
     public String getEmail() {
         return email;

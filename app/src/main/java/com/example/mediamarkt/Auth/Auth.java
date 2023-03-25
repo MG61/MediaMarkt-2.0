@@ -114,11 +114,11 @@ public class Auth extends AppCompatActivity {
                                 finish();
                             }
                         }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Snackbar.make(root, e.getMessage(), Snackbar.LENGTH_SHORT).show();
-                    }
-                });
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Snackbar.make(root, e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                            }
+                        });
             }
         });
         dialog.show();
@@ -186,11 +186,11 @@ public class Auth extends AppCompatActivity {
                                 users.child(FirebaseAuth.getInstance().getCurrentUser().getUid())
                                         .setValue(user)
                                         .addOnSuccessListener(avoid -> Snackbar.make(root, "Пользователь добавлен!", Snackbar.LENGTH_SHORT).show()).addOnFailureListener(new OnFailureListener() {
-                                    @Override
-                                    public void onFailure(@NonNull Exception e) {
-                                        Snackbar.make(root, "Ошибка создания пользователя!" + e.getMessage(), Snackbar.LENGTH_SHORT).show();
-                                    }
-                                });
+                                            @Override
+                                            public void onFailure(@NonNull Exception e) {
+                                                Snackbar.make(root, "Ошибка создания пользователя!" + e.getMessage(), Snackbar.LENGTH_SHORT).show();
+                                            }
+                                        });
                             }
                         });
             }
