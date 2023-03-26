@@ -90,7 +90,7 @@ public class CatFire1 extends AppCompatActivity implements LoadListener, LoadLis
     private void loadFromFirebase() {
         List<Model> Models = new ArrayList<>();
         FirebaseDatabase.getInstance()
-                .getReference("AllToy")
+                .getReference("AllElec")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -160,7 +160,7 @@ public class CatFire1 extends AppCompatActivity implements LoadListener, LoadLis
     private void countCartItem() {
         List<CartModel> cartModels = new ArrayList<>();
         FirebaseDatabase
-                .getInstance().getReference("Корзина")
+                .getInstance().getReference("Cart")
                 .child("UNIQUE_USER_ID")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

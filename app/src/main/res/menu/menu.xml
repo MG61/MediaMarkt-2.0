@@ -9,10 +9,6 @@
         android:title="@string/menu_catalog"
         android:icon="@drawable/catalog1" />
     <item
-        android:id="@+id/basket1"
-        android:title="@string/menu_basket"
-        android:icon="@drawable/basket" />
-    <item
         android:id="@+id/profile"
         android:title="@string/menu_account"
         android:icon="@drawable/profile" />

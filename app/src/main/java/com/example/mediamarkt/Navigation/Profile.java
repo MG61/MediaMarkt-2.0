@@ -36,6 +36,7 @@ import com.bumptech.glide.request.RequestOptions;
 import com.bumptech.glide.request.target.Target;
 import com.example.mediamarkt.Auth.Auth;
 import com.example.mediamarkt.Auth.User;
+import com.example.mediamarkt.Svyaz.History;
 import com.example.mediamarkt.Svyaz.Svyaz11;
 import com.example.mediamarkt.Svyaz.Svyaz12;
 import com.example.mediamarkt.R;
@@ -66,7 +67,7 @@ public class Profile extends Fragment {
     TextView numbercard, levelcard;
     Button exit;
     TextView  nameprofilefirebase, telprofilefirebase;
-    RelativeLayout svyaz1, svyaz2;
+    RelativeLayout svyaz0, svyaz1, svyaz2;
     ImageView qrimage;
     CardView qr;
 
@@ -84,6 +85,7 @@ public class Profile extends Fragment {
         nameprofilefirebase = (TextView) view.findViewById(R.id.nameprofilefirebase);
         telprofilefirebase = (TextView) view.findViewById(R.id.telprofilefirebase);
         exit = (Button) view.findViewById(R.id.exit);
+        svyaz0 = view.findViewById(R.id.svyaz0);
         svyaz1 = view.findViewById(R.id.svyaz1);
         svyaz2 = view.findViewById(R.id.svyaz2);
         qrimage = view.findViewById(R.id.qrimage);
@@ -101,6 +103,13 @@ public class Profile extends Fragment {
                 FirebaseAuth.getInstance().signOut();
                 Intent i = new Intent(new Intent(getActivity(), Auth.class));
                 startActivity(i);
+            }
+        });
+        svyaz0.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), History.class);
+                startActivity(intent);
             }
         });
 

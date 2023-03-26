@@ -109,7 +109,7 @@
                                 android:id="@+id/statuscard"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:layout_marginLeft="15dp"
+                                android:layout_marginLeft="5dp"
                                 android:layout_marginTop="130dp"
                                 android:fontFamily="@font/ropa_sans"
                                 android:text=""

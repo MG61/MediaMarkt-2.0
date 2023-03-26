@@ -14,15 +14,22 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
+import android.widget.ScrollView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.airbnb.lottie.LottieAnimationView;
 import com.example.mediamarkt.CatFire.Model.CartModel;
 import com.example.mediamarkt.CatFire.adapter.MyCartAdapter;
 import com.example.mediamarkt.CatFire.eventbus.MyUpdateCartEvent;
 import com.example.mediamarkt.CatFire.listener.LoadListenerCart;
 import com.example.mediamarkt.R;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -46,13 +53,17 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
     @BindView(R.id.recycler_cart)
     RecyclerView recycler_cart;
     @BindView(R.id.mainLayout)
-    RelativeLayout mainLayout;
+    ScrollView mainLayout;
     @BindView(R.id.btnback)
     ImageView btnBack;
     @BindView(R.id.txtTotal)
     TextView txtTotal;
-    @BindView(R.id.buyalltovar)
-    ImageView buyalltovar;
+    @BindView(R.id.buy)
+    Button buy;
+    @BindView(R.id.summ)
+    LinearLayout summ;
+    @BindView(R.id.animationView)
+    LottieAnimationView animationView;
     LoadListenerCart cartLoadListener;
 
     @Override
@@ -106,8 +117,14 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
                             }
                             prov = 1;
                             cartLoadListener.onCartSuccess(cartModels);
+                            buy.setVisibility(View.VISIBLE);
+                            summ.setVisibility(View.VISIBLE);
+                            animationView.setVisibility(View.INVISIBLE);
                         } else {
                             cartLoadListener.onCartFailed("Корзина пуста!");
+                            buy.setVisibility(View.INVISIBLE);
+                            summ.setVisibility(View.INVISIBLE);
+                            animationView.setVisibility(View.VISIBLE);
                             if (prov == 1) {
                                 finish();
                                 startActivity(getIntent());
@@ -142,17 +159,6 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
         recycler_cart.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
 
         btnBack.setOnClickListener(v -> finish());
-        buyalltovar.setOnClickListener(v -> {
-            AlertDialog dialog = new AlertDialog.Builder(this)
-                    .setTitle("Оплата покупок")
-                    .setMessage("Хотите оплатить весь товар?")
-                    .setNegativeButton("Отмена", (dialog1, which) -> dialog1.dismiss())
-                    .setPositiveButton("Да", (dialog12, which) -> {
-                        deletefromFirebase();
-                        dialog12.dismiss();
-                    }).create();
-            dialog.show();
-        });
     }
 
     @Override
@@ -169,5 +175,50 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
     @Override
     public void onCartFailed(String message) {
         Snackbar.make(mainLayout, message, Snackbar.LENGTH_SHORT).show();
+    }
+
+    String countbuy;
+    public void buy(View view) {
+        ButterKnife.bind(this);
+
+        cartLoadListener = this;
+        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
+        recycler_cart.setLayoutManager(layoutManager);
+        recycler_cart.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
+
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+        FirebaseDatabase db = FirebaseDatabase.getInstance();
+        DatabaseReference ref = db.getReference("Пользователи").child(uid).child("buy").push(); // Key
+        ref.setValue(txtTotal.getText()); // Value
+
+        deletefromFirebase();
+
+
+
+        Snackbar.make(mainLayout, "Спасибо за покупку!", Snackbar.LENGTH_SHORT).show();
+        DatabaseReference productsRef = db.getReference("Пользователи").child(uid).child("buy");
+        Query queryByProductSeasonCategory = productsRef;
+        queryByProductSeasonCategory.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    long count = task.getResult().getChildrenCount();
+                    Log.d("TAG", "count: " + count);
+                    countbuy = String.valueOf(count); //Added
+
+                    DatabaseReference ref1 = db.getReference("Пользователи").child(uid).child("level"); // Key
+                    if (count > 3 && count <=5) {
+                        ref1.setValue("Продвинутый");
+                    }
+                    if (count > 5) {
+                        ref1.setValue("Постоянный покупатель");
+                    }
+                } else {
+                    Log.d("TAG", task.getException().getMessage()); //Never ignore potential errors!
+                }
+            }
+        });
+
+
     }
 }

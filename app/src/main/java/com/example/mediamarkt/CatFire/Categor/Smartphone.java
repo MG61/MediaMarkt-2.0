@@ -158,7 +158,7 @@ public class Smartphone extends AppCompatActivity implements LoadListener, LoadL
     private void countCartItem() {
         List<CartModel> cartModels = new ArrayList<>();
         FirebaseDatabase
-                .getInstance().getReference("Корзина")
+                .getInstance().getReference("Cart")
                 .child("UNIQUE_USER_ID")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

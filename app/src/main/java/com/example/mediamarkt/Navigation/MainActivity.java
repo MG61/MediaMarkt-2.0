@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.bottomNavigationView);//Навигация
         NavController navController = Navigation.findNavController(this, R.id.fragment);//Навигация
-        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home1, R.id.catalog1, R.id.basket1, R.id.profile).build();//Навигация
+        AppBarConfiguration appBarConfiguration = new AppBarConfiguration.Builder(R.id.home1, R.id.catalog1, R.id.profile).build();//Навигация
         NavigationUI.setupWithNavController(navView, navController);//Навигация
     }
 };

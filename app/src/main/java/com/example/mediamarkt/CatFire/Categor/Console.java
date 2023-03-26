@@ -109,7 +109,6 @@ public class Console extends AppCompatActivity implements LoadListener, LoadList
                         loadListener.onLoadFailed(error.getMessage());
                     }
                 });
-
     }
 
     private void init() {
@@ -158,7 +157,7 @@ public class Console extends AppCompatActivity implements LoadListener, LoadList
     private void countCartItem() {
         List<CartModel> cartModels = new ArrayList<>();
         FirebaseDatabase
-                .getInstance().getReference("Корзина")
+                .getInstance().getReference("Cart")
                 .child("UNIQUE_USER_ID")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override

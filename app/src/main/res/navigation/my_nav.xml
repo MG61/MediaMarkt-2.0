@@ -18,15 +18,7 @@
         android:name="com.example.mediamarkt.Navigation.Catalog1"
         android:label="fragment_catalog1">
         <action
-            android:id="@+id/action_catalog1_to_basket1"
-            app:destination="@id/basket1" />
-    </fragment>
-    <fragment
-        android:id="@+id/basket1"
-        android:name="com.example.mediamarkt.Navigation.Basket1"
-        android:label="fragment_basket1">
-        <action
-            android:id="@+id/action_basket1_to_profile"
+            android:id="@+id/action_catalog1_to_profile2"
             app:destination="@id/profile" />
     </fragment>
     <fragment

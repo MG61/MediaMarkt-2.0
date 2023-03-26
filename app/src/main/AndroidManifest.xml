@@ -17,6 +17,10 @@
         android:theme="@style/Theme.MediaMarkt"
         tools:targetApi="31">
         <activity
+            android:name=".Svyaz.History"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".CatFire.Categor.Laptop"
             android:exported="false" />
         <activity
@@ -39,7 +43,7 @@
             android:exported="false" />
         <activity
             android:name=".CatFire.Categor.VR"
-            android:exported="false"/>
+            android:exported="false" />
         <activity
             android:name=".CatFire.CartActivity.CartActivity"
             android:exported="false" />
@@ -59,19 +63,13 @@
         <activity
             android:name=".Qr_code.Qr_code"
             android:exported="true" />
-        <activity
-            android:name=".Sqlcat.DobSql"
-            android:exported="true" />
+
         <activity
             android:name=".Auth.Auth"
             android:exported="false" />
         <activity
             android:name=".Auth.Register"
             android:exported="false" />
-        <activity
-            android:name=".Sqlcat.Allcategor"
-            android:label="Toy list"
-            android:parentActivityName=".Sqlcat.DobSql" />
         <activity
             android:name=".RecyclerAllProduct.AddRecycler"
             android:exported="false" />
@@ -100,10 +98,6 @@
         <activity
             android:name=".Navigation.Home1"
             android:label="@string/menu_home"
-            tools:ignore="Instantiatable" />
-        <activity
-            android:name=".Navigation.Basket1"
-            android:label="@string/menu_basket"
             tools:ignore="Instantiatable" />
     </application>
 

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Navigation.Basket1">
+    tools:context=".Svyaz.History">
 
 
     <LinearLayout
@@ -12,7 +13,8 @@
         android:layout_height="?android:attr/actionBarSize"
         android:background="@color/purple_200"
         android:orientation="horizontal"
-        android:weightSum="16">
+        android:weightSum="16"
+        tools:ignore="MissingConstraints">
 
         <ImageView
             android:id="@+id/btnback"
@@ -23,42 +25,16 @@
             android:src="@drawable/ic_baseline_arrow_back_24"></ImageView>
 
         <TextView
-            android:id="@+id/txtTotal"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_gravity="center_vertical"
             android:layout_weight="11"
             android:textColor="@color/white"
             android:gravity="center"
-            android:text="КОРЗИНА"
+            android:text="История покупок"
 
             android:layout_marginStart="25dp"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
-
-
-        <FrameLayout
-            android:id="@+id/btncart"
-            android:layout_width="0dp"
-            android:layout_height="match_parent"
-            android:layout_weight="3">
-
-            <ImageView
-                android:id="@+id/buyalltovar"
-                android:layout_width="40dp"
-                android:layout_height="30dp"
-                android:layout_gravity="center_vertical"
-                android:layout_marginStart="20dp"
-                android:src="@drawable/ic_baseline_payment_24"></ImageView>
-        </FrameLayout>
     </LinearLayout>
-
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_cart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_below="@+id/panel"
-        android:padding="8dp"></androidx.recyclerview.widget.RecyclerView>
-
-</RelativeLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,28 +1,52 @@
 package com.example.mediamarkt.Search;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.ImageView;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.mediamarkt.CatFire.CartActivity.CartActivity;
+import com.example.mediamarkt.CatFire.Model.CartModel;
+import com.example.mediamarkt.CatFire.Model.Model;
+import com.example.mediamarkt.CatFire.adapter.MyToyAdapter;
+import com.example.mediamarkt.CatFire.listener.LoadListener;
+import com.example.mediamarkt.CatFire.listener.LoadListenerCart;
+import com.example.mediamarkt.CatFire.utils.SpaceItemDecoration;
 import com.example.mediamarkt.R;
 import com.example.mediamarkt.RecyclerAllProduct.CustomAdapter;
 import com.example.mediamarkt.RecyclerAllProduct.MyDataBase;
 import com.example.mediamarkt.RecyclerAllProduct.Toy;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Locale;
 
-public class AllSearch extends AppCompatActivity {
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
+public class AllSearch extends AppCompatActivity implements LoadListener, LoadListenerCart {
 
     MyDataBase dBmain;
     SQLiteDatabase sqLiteDatabase;
@@ -31,19 +55,27 @@ public class AllSearch extends AppCompatActivity {
     SearchView search_view;
     TextView errortext;
     ImageView errorimage;
+    LoadListener loadListener;
+    LoadListenerCart loadListenerCart;
+
+    DatabaseReference mref;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_all_search);
 
+        mref = FirebaseDatabase.getInstance().getReference("AllElec");
+
+
         recyclerView = findViewById(R.id.recycleView);
         search_view = findViewById(R.id.search_view);
         errorimage = findViewById(R.id.errorimage);
         errortext = findViewById(R.id.errortext);
-
         dBmain = new MyDataBase(this);//Инициализируем базу данных
-        displayData();
+
+        init();
+        loadFromFirebase("");
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         search_view.requestFocus();
         search_view.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
@@ -54,7 +86,12 @@ public class AllSearch extends AppCompatActivity {
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                filterlist(newText);
+                if (newText.toString()!=null) {
+                    loadFromFirebase(newText);
+                }
+                else{
+                    loadFromFirebase("");
+                }
                 return true;
             }
         });
@@ -90,22 +127,76 @@ public class AllSearch extends AppCompatActivity {
         myAdapter = new CustomAdapter(this, R.layout.itemforrecyclerview, mod, sqLiteDatabase);
         recyclerView.setAdapter(myAdapter);
 
+
     }
 
-    private void displayData() {
-        sqLiteDatabase = dBmain.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + "total_name" + "", null);
-        ArrayList<Toy> models = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(0);
-            String name = cursor.getString(1);
-            String price = cursor.getString(2);
-            String atr = cursor.getString(3);
-            byte[] image = cursor.getBlob(4);
-            models.add(new Toy(id, name, price, atr, image));
-        }
-        cursor.close();
-        myAdapter = new CustomAdapter(this, R.layout.itemforrecyclerview, models, sqLiteDatabase);
-        recyclerView.setAdapter(myAdapter);
+
+
+
+    private void loadFromFirebase(String name) {
+            List<Model> Model = new ArrayList<>();
+            FirebaseDatabase.getInstance()
+                    .getReference("AllElec").orderByChild("name")
+                    .addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            if (snapshot.exists()) {
+                                for (DataSnapshot Snapshot : snapshot.getChildren()) {
+                                    Model model = Snapshot.getValue(Model.class);
+                                    model.setKey(Snapshot.getKey());
+                                    Model.add(model);
+                                }
+                                loadListener.onLoadSuccess(Model);
+                            } else {
+                                loadListener.onLoadFailed("Товары не найдены!");
+                            }
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+                            loadListener.onLoadFailed(error.getMessage());
+                        }
+                    });
+//
+//        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
+//        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
+//        DatabaseReference usuariosRef = rootRef.child("Пользователи");
+//        usuariosRef.child(uid).child("name").get()
+
+    }
+
+    private void init() {
+        ButterKnife.bind(this);
+
+        loadListener = this;
+        loadListenerCart = this;
+
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
+        recyclerView.setLayoutManager(gridLayoutManager);
+        recyclerView.addItemDecoration(new SpaceItemDecoration());
+    }
+
+    @Override
+    public void onLoadSuccess(List<Model> ModelList) {
+        MyToyAdapter adapter = new MyToyAdapter(this, ModelList, loadListenerCart);
+        recyclerView.setAdapter(adapter);
+    }
+
+    @Override
+    public void onLoadFailed(String message) {
+//        Snackbar.make(mainLayout, message, Snackbar.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onCartSuccess(List<CartModel> cartModelList) {
+//        int cartSum = 0;
+//        for (CartModel cartModel : cartModelList)
+//            cartSum += cartModel.getQuantity();
+//        badge.setNumber(cartSum);
+    }
+
+    @Override
+    public void onCartFailed(String message) {
+//        Snackbar.make(mainLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 }
