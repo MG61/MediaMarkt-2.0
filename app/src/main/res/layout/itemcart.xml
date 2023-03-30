@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="8dp"
+    app:cardCornerRadius="16dp"
+    app:cardElevation="12dp"
+    android:padding="8dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+    <LinearLayout
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp"
+        android:layout_width="330dp"
+        android:layout_height="wrap_content">
+        <TextView
+            android:id="@+id/txtDate"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="27 марта 2023"
+            android:singleLine="false"
+            android:textSize="16sp"
+            android:layout_gravity="start"
+            android:textStyle="bold"/>
+        <TextView
+            android:id="@+id/txtWherebuy"
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Покупка в магазине"
+            android:singleLine="false"
+            android:textSize="16sp"
+            android:textColor="@color/black"
+            android:layout_gravity="start" />
+
+        <TextView
+            android:id="@+id/txtPrice"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="212000₽"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:layout_gravity="start" />
+
+        <TextView
+            android:id="@+id/txtQuantity"
+            android:layout_marginTop="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="4 товара"
+            android:textSize="14sp"
+            android:textStyle="bold"
+            android:layout_gravity="start" />
+    </LinearLayout>
+
+        <ImageView
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="5dp"
+            android:layout_gravity="center"
+            android:src="@drawable/delivery"/>
+</LinearLayout>
+</androidx.cardview.widget.CardView>

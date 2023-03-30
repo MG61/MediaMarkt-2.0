@@ -21,7 +21,10 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.airbnb.lottie.LottieAnimationView;
+import com.example.mediamarkt.Auth.User;
 import com.example.mediamarkt.CatFire.Model.CartModel;
+import com.example.mediamarkt.CatFire.Model.History;
+import com.example.mediamarkt.CatFire.Model.Model;
 import com.example.mediamarkt.CatFire.adapter.MyCartAdapter;
 import com.example.mediamarkt.CatFire.eventbus.MyUpdateCartEvent;
 import com.example.mediamarkt.CatFire.listener.LoadListenerCart;
@@ -43,6 +46,9 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
 import java.util.List;
 
 import butterknife.BindView;
@@ -186,14 +192,33 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
         recycler_cart.setLayoutManager(layoutManager);
         recycler_cart.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
 
+        //Получение количества товаров в чеке
+        Bundle arguments = getIntent().getExtras();
+        int quantity = arguments.getInt("quantity");
+
+        //Получение дня
+        Calendar calendar = new GregorianCalendar();
+        Date trialTime = new Date();
+        calendar.setTime(trialTime);
+        Integer date = calendar.get(Calendar.DATE);
+        Integer month = calendar.get(Calendar.MONTH) + 1;
+        Integer year = calendar.get(Calendar.YEAR);
+        String time = date+ " " + month+ " " + year;
+
+        //Запись новых данных
+        History history = new History();
+        history.setDate(time);
+        history.setWherebuy("Онлайн заказ");
+        history.setPrice(txtTotal.getText().toString());
+        history.setQuantity(String.valueOf(quantity));
+
+
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseDatabase db = FirebaseDatabase.getInstance();
         DatabaseReference ref = db.getReference("Пользователи").child(uid).child("buy").push(); // Key
-        ref.setValue(txtTotal.getText()); // Value
+        ref.setValue(history);
 
         deletefromFirebase();
-
-
 
         Snackbar.make(mainLayout, "Спасибо за покупку!", Snackbar.LENGTH_SHORT).show();
         DatabaseReference productsRef = db.getReference("Пользователи").child(uid).child("buy");

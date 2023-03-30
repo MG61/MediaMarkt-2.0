@@ -68,9 +68,11 @@ public class VR extends AppCompatActivity implements LoadListener, LoadListenerC
         super.onStop();
     }
 
+    int quantitytovar = 0;
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onUpdateCart(MyUpdateCartEvent event) {
         countCartItem();
+        quantitytovar++;
     }
 
 
@@ -124,7 +126,9 @@ public class VR extends AppCompatActivity implements LoadListener, LoadListenerC
         recycler_all.setLayoutManager(gridLayoutManager);
         recycler_all.addItemDecoration(new SpaceItemDecoration());
         btnBack.setOnClickListener(v -> finish());
-        btnCart.setOnClickListener(v -> startActivity(new Intent(this, CartActivity.class)));
+        btnCart.setOnClickListener(view ->  {Intent intent = new Intent(this, CartActivity.class);
+            intent.putExtra("quantity",quantitytovar);
+            startActivity(intent);});
     }
 
     @Override
