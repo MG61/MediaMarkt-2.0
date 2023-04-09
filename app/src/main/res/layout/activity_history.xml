@@ -40,8 +40,14 @@
             android:textStyle="bold"></TextView>
     </LinearLayout>
 
+<!--    <ListView-->
+<!--        android:id="@+id/listviewtxt"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="match_parent"-->
+<!--        android:layout_below="@+id/panel"/>-->
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_all"
+        android:id="@+id/userList"
         android:padding="8dp"
         android:layout_below="@+id/panel"
         android:layout_width="match_parent"

@@ -12,7 +12,7 @@
     </style>
 
     <style name="SplashTheme" parent="Theme.MaterialComponents.DayNight.NoActionBar">
-        <item name="android:background">@drawable/toyman_24002</item>
+        <item name="android:background">@drawable/maketauth</item>
     </style>
 
     <style name="AuthNoActionBar">

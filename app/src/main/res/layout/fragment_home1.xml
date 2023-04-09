@@ -7,12 +7,14 @@
     android:layout_height="match_parent"
     android:background="@color/white"
     tools:context=".Navigation.Home1"
-    tools:ignore="SpeakableTextPresentCheck">
+    tools:ignore="SpeakableTextPresentCheck"
+    android:id="@+id/mainLayout">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        tools:ignore="MissingClass">
 
         <androidx.core.widget.NestedScrollView
             android:layout_width="match_parent"
@@ -44,9 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
-                        android:orientation="horizontal"
-                        tools:ignore="MissingConstraints"
-                        android:scrollbars="none">
+                        android:orientation="horizontal">
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -74,10 +74,10 @@
                                 android:layout_marginLeft="10dp"
                                 app:cardCornerRadius="16dp">
 
-                                    <ImageView
-                                        android:layout_width="200dp"
-                                        android:layout_height="292dp"
-                                        android:src="@drawable/makets02" />
+                                <ImageView
+                                    android:layout_width="200dp"
+                                    android:layout_height="292dp"
+                                    android:src="@drawable/makets02" />
                             </androidx.cardview.widget.CardView>
 
                             <androidx.cardview.widget.CardView
@@ -183,33 +183,56 @@
 
         </androidx.cardview.widget.CardView>
 
-        <LinearLayout
-            android:layout_height="wrap_content"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_gravity="fill"
+            android:layout_margin="8dp"
+            android:foreground="?android:attr/selectableItemBackground"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="8dp">
 
-
-            <TextView
-                android:layout_width="wrap_content"
+            <LinearLayout
                 android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:orientation="vertical">
 
-                android:layout_marginLeft="20dp"
-                android:layout_marginBottom="10dp"
-                android:text="Товары дня"
-                android:textSize="24dp"
-                android:layout_marginTop="10dp"
-                android:fontFamily="@font/ropa_sans"
-                android:textStyle="bold"></TextView>
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="fill"
+                    android:layout_margin="8dp"
+                    android:foreground="?android:attr/selectableItemBackground"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="8dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginBottom="10dp"
+                    android:text="Товары дня"
+                    android:textSize="24dp"
+                    android:layout_marginTop="10dp"
+                    android:fontFamily="@font/ropa_sans"
+                    android:textStyle="bold"></TextView>
+        </androidx.cardview.widget.CardView>
 
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageView
+                <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="150dp"
-                    android:src="@drawable/homeback2"
-                    android:gravity="top" />
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="150dp"
+                        android:src="@drawable/homeback2" />
+
+                </LinearLayout>
 
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -229,7 +252,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginTop="80dp"
-                        android:layout_marginLeft="120dp"
+                        android:layout_marginLeft="100dp"
                         android:text="🔥"
                         android:textColor="@color/white"
                         android:textStyle="bold" />
@@ -246,65 +269,190 @@
                 </LinearLayout>
 
                 <HorizontalScrollView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="110dp">
+                    android:layout_marginTop="110dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="250dp"
+                    tools:ignore="ScrollViewCount"
+                    android:scrollbars="none">
 
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_margin="8dp"
+                        android:layout_height="220dp"
                         app:cardCornerRadius="16dp"
-                        app:cardElevation="12dp"
-                        android:padding="8dp"
-                        tools:context=".RecyclerAllProduct.Item">
+                        app:cardElevation="2dp"
+                        android:layout_margin="8dp">
 
                         <LinearLayout
                             android:orientation="vertical"
                             android:gravity="center"
-                            android:padding="16dp"
+                            android:padding="8dp"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
 
-
                             <ImageView
-                                android:id="@+id/img1"
                                 android:layout_width="150dp"
                                 android:layout_height="150dp"
-                                android:src="@mipmap/ic_launcher" />
-
+                                android:src="@drawable/card13"
+                                android:contentDescription="Вторая фотография" />
 
                             <TextView
-                                android:id="@+id/txtName"
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
-                                android:text="LEGO"
-                                android:singleLine="false"
-                                android:textSize="25sp"
-                                android:textStyle="bold"
-                                android:layout_gravity="start" />
+                                android:text="The Last Of US"
+                                android:textSize="20sp"
+                                android:textStyle="bold" />
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
                             <TextView
-                                android:id="@+id/txtPrice"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:text="₽ 123"
+                                android:text="1199 ₽"
+                                android:textSize="18sp"
+                                android:textStyle="bold"/>
+
+                            <TextView
+
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginLeft="20dp"
+                                android:text="3̶9̶9̶9̶ ₽̶"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:layout_gravity="start" />
+                                android:textColor="#B4AD2831"/>
+                            </LinearLayout>
                         </LinearLayout>
-
                     </androidx.cardview.widget.CardView>
 
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="wrap_content"
+                        android:layout_height="220dp"
+                        app:cardCornerRadius="16dp"
+                        app:cardElevation="2dp"
+                        android:layout_margin="8dp">
 
+                        <LinearLayout
+                            android:orientation="vertical"
+                            android:gravity="center"
+                            android:padding="8dp"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content">
+
+                            <ImageView
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                android:src="@drawable/card12"
+                                android:contentDescription="Вторая фотография" />
+
+                            <TextView
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:text="Intel Core i7-11700 Box"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+                                <TextView
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:text="32999 ₽"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"/>
+
+                                <TextView
+
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginLeft="10dp"
+                                    android:text="3̶9̶9̶9̶9̶ ₽̶"
+                                    android:textSize="18sp"
+                                    android:textStyle="bold"
+                                    android:textColor="#B4AD2831"/>
+                            </LinearLayout>
+                        </LinearLayout>
+                    </androidx.cardview.widget.CardView>
+
+                        <androidx.cardview.widget.CardView
+                            android:layout_width="wrap_content"
+                            android:layout_height="220dp"
+                            app:cardCornerRadius="16dp"
+                            app:cardElevation="2dp"
+                            android:layout_margin="8dp">
+
+                            <LinearLayout
+                                android:orientation="vertical"
+                                android:gravity="center"
+                                android:padding="8dp"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <ImageView
+                                    android:layout_width="150dp"
+                                    android:layout_height="150dp"
+                                    android:src="@drawable/card13"
+                                    android:contentDescription="Вторая фотография" />
+
+                                <TextView
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content"
+                                    android:text="The Last Of US"
+                                    android:textSize="20sp"
+                                    android:textStyle="bold" />
+
+                                <LinearLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:text="1199 ₽"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"/>
+
+                                    <TextView
+
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:layout_marginLeft="20dp"
+                                        android:text="3̶9̶9̶9̶ ₽̶"
+                                        android:textSize="18sp"
+                                        android:textStyle="bold"
+                                        android:textColor="#B4AD2831"/>
+                                </LinearLayout>
+                            </LinearLayout>
+                        </androidx.cardview.widget.CardView>
+
+                    </LinearLayout>
                 </HorizontalScrollView>
-
-
             </RelativeLayout>
+            </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.viewpager.widget.ViewPager
+                android:overScrollMode="never"
+                android:id="@+id/viewpagerArticle"
+                android:layout_width="match_parent"
+                android:layout_height="160dp"></androidx.viewpager.widget.ViewPager>
+
+            <me.relex.circleindicator.CircleIndicator
+                android:id="@+id/indicator"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                app:ci_drawable="@drawable/selectedindicator"
+                android:layout_gravity="bottom" />
         </LinearLayout>
-
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"

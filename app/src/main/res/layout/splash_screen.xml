@@ -3,5 +3,5 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:tools="http://schemas.android.com/tools"
-    android:background="@drawable/toyman_24002"
+    android:background="@drawable/maketauth"
     tools:context=".SplashScreen"></androidx.constraintlayout.widget.ConstraintLayout>

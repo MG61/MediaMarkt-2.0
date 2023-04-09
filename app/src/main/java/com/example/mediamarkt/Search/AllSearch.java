@@ -27,9 +27,6 @@ import com.example.mediamarkt.CatFire.listener.LoadListener;
 import com.example.mediamarkt.CatFire.listener.LoadListenerCart;
 import com.example.mediamarkt.CatFire.utils.SpaceItemDecoration;
 import com.example.mediamarkt.R;
-import com.example.mediamarkt.RecyclerAllProduct.CustomAdapter;
-import com.example.mediamarkt.RecyclerAllProduct.MyDataBase;
-import com.example.mediamarkt.RecyclerAllProduct.Toy;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.FirebaseAuth;
@@ -48,10 +45,9 @@ import butterknife.ButterKnife;
 
 public class AllSearch extends AppCompatActivity implements LoadListener, LoadListenerCart {
 
-    MyDataBase dBmain;
+
     SQLiteDatabase sqLiteDatabase;
     RecyclerView recyclerView;
-    CustomAdapter myAdapter;
     SearchView search_view;
     TextView errortext;
     ImageView errorimage;
@@ -67,12 +63,10 @@ public class AllSearch extends AppCompatActivity implements LoadListener, LoadLi
 
         mref = FirebaseDatabase.getInstance().getReference("AllElec");
 
-
         recyclerView = findViewById(R.id.recycleView);
         search_view = findViewById(R.id.search_view);
         errorimage = findViewById(R.id.errorimage);
         errortext = findViewById(R.id.errortext);
-        dBmain = new MyDataBase(this);//Инициализируем базу данных
 
         init();
         loadFromFirebase("");
@@ -96,41 +90,6 @@ public class AllSearch extends AppCompatActivity implements LoadListener, LoadLi
             }
         });
     }
-
-    private void filterlist(String text) {
-        ArrayList<Toy> mod = new ArrayList<>();
-        sqLiteDatabase = dBmain.getReadableDatabase();
-        Cursor cursor = sqLiteDatabase.rawQuery("SELECT * FROM " + "total_name" + "", null);
-        ArrayList<Toy> model = new ArrayList<>();
-        while (cursor.moveToNext()) {
-            int id = cursor.getInt(0);
-            String name = cursor.getString(1);
-            String price = cursor.getString(2);
-            String atr = cursor.getString(3);
-            byte[] image = cursor.getBlob(4);
-            model.add(new Toy(id, name, price, atr, image));
-        }
-        for (Toy Item : model) {
-            if (Item.getName().toLowerCase().contains(text.toLowerCase())) {
-                mod.add(Item);
-            }
-        }
-
-        if (mod.isEmpty()) {
-            errortext.setVisibility(View.VISIBLE);
-            errorimage.setVisibility(View.VISIBLE);
-        } else {
-            errortext.setVisibility(View.INVISIBLE);
-            errorimage.setVisibility(View.INVISIBLE);
-            myAdapter.setFilteredList(mod);
-        }
-        myAdapter = new CustomAdapter(this, R.layout.itemforrecyclerview, mod, sqLiteDatabase);
-        recyclerView.setAdapter(myAdapter);
-
-
-    }
-
-
 
 
     private void loadFromFirebase(String name) {
@@ -157,12 +116,6 @@ public class AllSearch extends AppCompatActivity implements LoadListener, LoadLi
                             loadListener.onLoadFailed(error.getMessage());
                         }
                     });
-//
-//        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-//        DatabaseReference rootRef = FirebaseDatabase.getInstance().getReference();
-//        DatabaseReference usuariosRef = rootRef.child("Пользователи");
-//        usuariosRef.child(uid).child("name").get()
-
     }
 
     private void init() {
@@ -184,19 +137,13 @@ public class AllSearch extends AppCompatActivity implements LoadListener, LoadLi
 
     @Override
     public void onLoadFailed(String message) {
-//        Snackbar.make(mainLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 
     @Override
     public void onCartSuccess(List<CartModel> cartModelList) {
-//        int cartSum = 0;
-//        for (CartModel cartModel : cartModelList)
-//            cartSum += cartModel.getQuantity();
-//        badge.setNumber(cartSum);
     }
 
     @Override
     public void onCartFailed(String message) {
-//        Snackbar.make(mainLayout, message, Snackbar.LENGTH_SHORT).show();
     }
 }

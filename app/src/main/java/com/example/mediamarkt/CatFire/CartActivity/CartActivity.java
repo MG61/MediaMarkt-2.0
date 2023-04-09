@@ -203,14 +203,14 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
         Integer date = calendar.get(Calendar.DATE);
         Integer month = calendar.get(Calendar.MONTH) + 1;
         Integer year = calendar.get(Calendar.YEAR);
-        String time = date+ " " + month+ " " + year;
+        String time = "Дата покупки: " + date+ "." + month+ "." + year;
 
         //Запись новых данных
         History history = new History();
         history.setDate(time);
         history.setWherebuy("Онлайн заказ");
         history.setPrice(txtTotal.getText().toString());
-        history.setQuantity(String.valueOf(quantity));
+        history.setQuantity(String.valueOf(quantity) + " товара");
 
 
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
