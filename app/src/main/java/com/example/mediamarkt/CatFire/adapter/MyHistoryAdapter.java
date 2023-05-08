@@ -40,8 +40,6 @@ public class MyHistoryAdapter extends RecyclerView.Adapter<MyHistoryAdapter.MyVi
         holder.txtWherebuy.setText(history.getWherebuy());
         holder.txtPrice.setText(history.getPrice());
         holder.txtQuantity.setText(history.getQuantity());
-
-
     }
 
     @Override

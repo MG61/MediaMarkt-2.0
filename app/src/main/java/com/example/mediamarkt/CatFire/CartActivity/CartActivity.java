@@ -1,5 +1,7 @@
 package com.example.mediamarkt.CatFire.CartActivity;
 
+import static java.security.CryptoPrimitive.SIGNATURE;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.DividerItemDecoration;
@@ -7,8 +9,14 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
+import android.content.pm.Signature;
+import android.os.Build;
 import android.os.Bundle;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -45,6 +53,7 @@ import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
+import java.security.MessageDigest;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
@@ -102,6 +111,7 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
 
         init();
         loadCartFromFirebase();
+
     }
 
     public int prov = 0;
@@ -109,9 +119,11 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
     private void loadCartFromFirebase() {
 
         List<CartModel> cartModels = new ArrayList<>();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseDatabase.getInstance()
-                .getReference("Cart")
-                .child("UNIQUE_USER_ID")
+                .getReference("Пользователи")
+                .child(uid)
+                .child("Cart")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -148,8 +160,11 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
     }
 
     private void deletefromFirebase() {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference Cart = FirebaseDatabase.getInstance()
-                .getReference("Cart");
+                .getReference("Пользователи")
+                .child(uid)
+                .child("Cart");
         Cart.removeValue();
         finish();
         startActivity(getIntent());
@@ -221,6 +236,7 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
         deletefromFirebase();
 
         Snackbar.make(mainLayout, "Спасибо за покупку!", Snackbar.LENGTH_SHORT).show();
+
         DatabaseReference productsRef = db.getReference("Пользователи").child(uid).child("buy");
         Query queryByProductSeasonCategory = productsRef;
         queryByProductSeasonCategory.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {

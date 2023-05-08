@@ -21,6 +21,7 @@ import com.example.mediamarkt.CatFire.listener.LoadListenerCart;
 import com.example.mediamarkt.CatFire.utils.SpaceItemDecoration;
 import com.example.mediamarkt.R;
 import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -66,11 +67,11 @@ public class Game extends AppCompatActivity implements LoadListener, LoadListene
         super.onStop();
     }
 
-    int quantitytovar = 0;
+    int QuantityTovar = 0;
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onUpdateCart(MyUpdateCartEvent event) {
         countCartItem();
-        quantitytovar++;
+        QuantityTovar++;
     }
 
 
@@ -125,8 +126,8 @@ public class Game extends AppCompatActivity implements LoadListener, LoadListene
         recycler_all.addItemDecoration(new SpaceItemDecoration());
         btnBack.setOnClickListener(v -> finish());
         btnCart.setOnClickListener(view ->  {Intent intent = new Intent(this, CartActivity.class);
-        intent.putExtra("quantity",quantitytovar);
-        startActivity(intent);});
+            if(QuantityTovar != 0) intent.putExtra("quantity", QuantityTovar); startActivity(intent);
+        });
     }
 
     @Override
@@ -161,9 +162,11 @@ public class Game extends AppCompatActivity implements LoadListener, LoadListene
 
     private void countCartItem() {
         List<CartModel> cartModels = new ArrayList<>();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseDatabase
-                .getInstance().getReference("Cart")
-                .child("UNIQUE_USER_ID")
+                .getInstance().getReference("Пользователи")
+                .child(uid)
+                .child("Cart")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

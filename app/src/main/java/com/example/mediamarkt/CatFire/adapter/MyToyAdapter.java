@@ -70,10 +70,12 @@ public class MyToyAdapter extends RecyclerView.Adapter<MyToyAdapter.MyToyViewHol
     }
 
     private void addToCart(Model model) {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         DatabaseReference userCart = FirebaseDatabase
                 .getInstance()
-                .getReference("Cart")
-                .child("UNIQUE_USER_ID");
+                .getReference("Пользователи")
+                .child(uid)
+                .child("Cart");
 
         userCart.child(model.getKey())
                 .addListenerForSingleValueEvent(new ValueEventListener() {

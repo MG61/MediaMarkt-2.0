@@ -39,7 +39,6 @@ import butterknife.ButterKnife;
 public class History extends AppCompatActivity {
 
         RecyclerView recyclerView;
-        DatabaseReference database;
         MyHistoryAdapter myAdapter;
         ArrayList<com.example.mediamarkt.CatFire.Model.History> list;
 
@@ -67,6 +66,7 @@ public class History extends AppCompatActivity {
         recyclerView.setAdapter(myAdapter);
 
         ref.addValueEventListener(new ValueEventListener() {
+
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 for(DataSnapshot dataSnapshot : snapshot.getChildren()){
@@ -77,9 +77,7 @@ public class History extends AppCompatActivity {
             }
 
             @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-
-            }
+            public void onCancelled(@NonNull DatabaseError error) {}
         });
     }
 }

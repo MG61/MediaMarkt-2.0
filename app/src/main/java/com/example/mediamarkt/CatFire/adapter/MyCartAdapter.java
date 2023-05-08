@@ -17,6 +17,7 @@ import com.bumptech.glide.Glide;
 import com.example.mediamarkt.CatFire.Model.CartModel;
 import com.example.mediamarkt.CatFire.eventbus.MyUpdateCartEvent;
 import com.example.mediamarkt.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.FirebaseDatabase;
 
 import org.greenrobot.eventbus.EventBus;
@@ -75,9 +76,11 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
     }
 
     private void deletefromFirebase(CartModel cartModel) {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseDatabase.getInstance()
-                .getReference("Cart")
-                .child("UNIQUE_USER_ID")
+                .getReference("Пользователи")
+                .child(uid)
+                .child("Cart")
                 .child(cartModel.getKey())
                 .removeValue()
                 .addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));
@@ -102,9 +105,11 @@ public class MyCartAdapter extends RecyclerView.Adapter<MyCartAdapter.MyCartView
     }
 
     private void updateFirebase(CartModel cartModel) {
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseDatabase.getInstance()
-                .getReference("Cart")
-                .child("UNIQUE_USER_ID")
+                .getReference("Пользователи")
+                .child(uid)
+                .child("Cart")
                 .child(cartModel.getKey())
                 .setValue(cartModel)
                 .addOnSuccessListener(aVoid -> EventBus.getDefault().postSticky(new MyUpdateCartEvent()));

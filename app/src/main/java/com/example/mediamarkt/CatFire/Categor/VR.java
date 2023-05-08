@@ -23,6 +23,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 
 import com.example.mediamarkt.R;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -163,9 +164,11 @@ public class VR extends AppCompatActivity implements LoadListener, LoadListenerC
 
     private void countCartItem() {
         List<CartModel> cartModels = new ArrayList<>();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseDatabase
-                .getInstance().getReference("Cart")
-                .child("UNIQUE_USER_ID")
+                .getInstance().getReference("Пользователи")
+                .child(uid)
+                .child("Cart")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {

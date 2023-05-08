@@ -29,6 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Random;
 
+
 public class Auth extends AppCompatActivity {
     Button sign;
     TextView reg;
@@ -148,7 +149,7 @@ public class Auth extends AppCompatActivity {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 if (TextUtils.isEmpty(email.getText().toString())) {
-                    Snackbar.make(root, "Введите вашу почту!", Snackbar.LENGTH_SHORT).show();
+                    Snackbar.make(root, "Введите почту!", Snackbar.LENGTH_SHORT).show();
                     return;
                 }
                 if (pass.getText().toString().length() < 5) {

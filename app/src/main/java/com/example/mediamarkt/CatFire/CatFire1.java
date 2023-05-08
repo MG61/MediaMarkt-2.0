@@ -22,6 +22,7 @@ import com.example.mediamarkt.CatFire.utils.SpaceItemDecoration;
 import com.example.mediamarkt.R;
 import com.google.android.material.snackbar.Snackbar;
 
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -67,9 +68,11 @@ public class CatFire1 extends AppCompatActivity implements LoadListener, LoadLis
         super.onStop();
     }
 
+    int QuantityTovar = 0;
     @Subscribe(threadMode = ThreadMode.MAIN, sticky = true)
     public void onUpdateCart(MyUpdateCartEvent event) {
         countCartItem();
+        QuantityTovar++;
     }
 
 
@@ -111,7 +114,6 @@ public class CatFire1 extends AppCompatActivity implements LoadListener, LoadLis
                         loadListener.onLoadFailed(error.getMessage());
                     }
                 });
-
     }
 
     private void init() {
@@ -124,7 +126,9 @@ public class CatFire1 extends AppCompatActivity implements LoadListener, LoadLis
         recycler_all.setLayoutManager(gridLayoutManager);
         recycler_all.addItemDecoration(new SpaceItemDecoration());
         btnBack.setOnClickListener(v -> finish());
-        btnCart.setOnClickListener(v -> startActivity(new Intent(this, CartActivity.class)));
+        btnCart.setOnClickListener(view ->  {Intent intent = new Intent(this, CartActivity.class);
+            if(QuantityTovar != 0) intent.putExtra("quantity", QuantityTovar); startActivity(intent);
+        });
     }
 
     @Override
@@ -139,7 +143,7 @@ public class CatFire1 extends AppCompatActivity implements LoadListener, LoadLis
     }
 
     @Override
-    public void onCartSuccess(List<CartModel> cartModelList) {
+    public void onCartSuccess(List< CartModel > cartModelList) {
         int cartSum = 0;
         for (CartModel cartModel : cartModelList)
             cartSum += cartModel.getQuantity();
@@ -159,9 +163,11 @@ public class CatFire1 extends AppCompatActivity implements LoadListener, LoadLis
 
     private void countCartItem() {
         List<CartModel> cartModels = new ArrayList<>();
+        String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseDatabase
-                .getInstance().getReference("Cart")
-                .child("UNIQUE_USER_ID")
+                .getInstance().getReference("Пользователи")
+                .child(uid)
+                .child("Cart")
                 .addListenerForSingleValueEvent(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
