@@ -46,6 +46,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_marginRight="10dp"
+                        android:scrollbars="none"
                         android:orientation="horizontal">
 
                         <LinearLayout
@@ -178,7 +179,7 @@
                 android:text="Что-то присмотрел?"
                 android:textSize="16dp"
                 android:textStyle="bold"
-                android:textColor="@color/purple_200" />
+                android:textColor="@color/background" />
 
 
         </androidx.cardview.widget.CardView>
@@ -324,7 +325,7 @@
                                 android:text="3̶9̶9̶9̶ ₽̶"
                                 android:textSize="18sp"
                                 android:textStyle="bold"
-                                android:textColor="#B4AD2831"/>
+                                android:textColor="@color/background"/>
                             </LinearLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -374,7 +375,7 @@
                                     android:text="3̶9̶9̶9̶9̶ ₽̶"
                                     android:textSize="18sp"
                                     android:textStyle="bold"
-                                    android:textColor="#B4AD2831"/>
+                                    android:textColor="@color/background"/>
                             </LinearLayout>
                         </LinearLayout>
                     </androidx.cardview.widget.CardView>
@@ -424,7 +425,7 @@
                                         android:text="3̶9̶9̶9̶ ₽̶"
                                         android:textSize="18sp"
                                         android:textStyle="bold"
-                                        android:textColor="#B4AD2831"/>
+                                        android:textColor="@color/background"/>
                                 </LinearLayout>
                             </LinearLayout>
                         </androidx.cardview.widget.CardView>
@@ -482,7 +483,7 @@
                 android:layout_marginTop="65dp"
                 android:fontFamily="@font/ropa_sans"
                 android:text="Хорошо"
-                android:textColor="@color/purple_200"
+                android:textColor="@color/background"
                 android:textAlignment="center"
                 android:textSize="16dp"
                 android:textStyle="bold" />

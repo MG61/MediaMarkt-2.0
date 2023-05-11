@@ -16,8 +16,8 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:background="@drawable/rounded"
-        app:itemIconTint="#ad2831"
-        app:itemTextColor="#ad2831"
+        app:itemIconTint="@color/background"
+        app:itemTextColor="@color/background"
         app:layout_constraintBottom_toBottomOf="parent"
         app:menu="@menu/menu" />
 

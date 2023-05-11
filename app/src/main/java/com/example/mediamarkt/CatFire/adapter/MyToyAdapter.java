@@ -103,7 +103,7 @@ public class MyToyAdapter extends RecyclerView.Adapter<MyToyAdapter.MyToyViewHol
                             cartModel.setQuantity(1);
                             cartModel.setTotalPrice(Float.parseFloat(model.getPrice()));
 
-                            userCart.child(model.getKey())
+                            userCart.push()
                                     .setValue(cartModel)
                                     .addOnSuccessListener(aVoid -> {
                                         iCartLoadListener.onCartFailed("Товар добавлен в корзину!");

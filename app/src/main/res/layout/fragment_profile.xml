@@ -86,7 +86,7 @@
                                 android:fontFamily="@font/ropa_sans"
                                 android:text="XXXX XXXX XXXX XXXX"
                                 android:textAlignment="center"
-                                android:textColor="@color/purple_200"
+                                android:textColor="@color/background"
                                 android:textSize="16dp"
                                 android:textStyle="bold" />
 
@@ -101,7 +101,7 @@
                                 android:fontFamily="@font/ropa_sans"
                                 android:text="Статус:"
                                 android:textAlignment="center"
-                                android:textColor="@color/purple_200"
+                                android:textColor="@color/background"
                                 android:textSize="16dp"
                                 android:textStyle="bold" />
 
@@ -114,7 +114,7 @@
                                 android:fontFamily="@font/ropa_sans"
                                 android:text=""
                                 android:textAlignment="center"
-                                android:textColor="@color/purple_200"
+                                android:textColor="@color/background"
                                 android:textSize="16dp"
                                 android:textStyle="bold" />
                             </LinearLayout>

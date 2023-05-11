@@ -1,5 +1,6 @@
 package com.example.mediamarkt.CatFire.CartActivity;
 
+import static android.content.ContentValues.TAG;
 import static java.security.CryptoPrimitive.SIGNATURE;
 
 import androidx.annotation.NonNull;
@@ -37,6 +38,7 @@ import com.example.mediamarkt.CatFire.adapter.MyCartAdapter;
 import com.example.mediamarkt.CatFire.eventbus.MyUpdateCartEvent;
 import com.example.mediamarkt.CatFire.listener.LoadListenerCart;
 import com.example.mediamarkt.R;
+import com.firebase.ui.database.FirebaseArray;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.snackbar.Snackbar;
@@ -207,10 +209,7 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
         recycler_cart.setLayoutManager(layoutManager);
         recycler_cart.addItemDecoration(new DividerItemDecoration(this, layoutManager.getOrientation()));
 
-        //Получение количества товаров в чеке
-        Bundle arguments = getIntent().getExtras();
-        int quantity = arguments.getInt("quantity");
-
+        final String quantity;
         //Получение дня
         Calendar calendar = new GregorianCalendar();
         Date trialTime = new Date();
@@ -220,18 +219,31 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
         Integer year = calendar.get(Calendar.YEAR);
         String time = "Дата покупки: " + date+ "." + month+ "." + year;
 
-        //Запись новых данных
-        History history = new History();
-        history.setDate(time);
-        history.setWherebuy("Онлайн заказ");
-        history.setPrice(txtTotal.getText().toString());
-        history.setQuantity(String.valueOf(quantity) + " товара");
-
-
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         FirebaseDatabase db = FirebaseDatabase.getInstance();
-        DatabaseReference ref = db.getReference("Пользователи").child(uid).child("buy").push(); // Key
-        ref.setValue(history);
+        DatabaseReference ref = db.getReference("Пользователи").child(uid).child("Cart");
+        ref.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
+            @Override
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                if (task.isSuccessful()) {
+                    long Count_Cart = task.getResult().getChildrenCount();
+
+                    //Запись новых данных
+                    History history = new History();
+                    history.setDate(time);
+                    history.setWherebuy("Онлайн заказ");
+                    history.setPrice(txtTotal.getText().toString());
+                    history.setQuantity(String.valueOf(Count_Cart) + " товара");
+
+
+                    FirebaseDatabase db1 = FirebaseDatabase.getInstance();
+                    DatabaseReference ref1 = db1.getReference("Пользователи").child(uid).child("buy").push(); // Key
+                    ref1.setValue(history);
+                } else {
+                    Log.d("TAG", task.getException().getMessage()); //Never ignore potential errors!
+                }
+            }
+        });
 
         deletefromFirebase();
 
@@ -244,7 +256,6 @@ public class CartActivity extends AppCompatActivity implements LoadListenerCart 
             public void onComplete(@NonNull Task<DataSnapshot> task) {
                 if (task.isSuccessful()) {
                     long count = task.getResult().getChildrenCount();
-                    Log.d("TAG", "count: " + count);
                     countbuy = String.valueOf(count); //Added
 
                     DatabaseReference ref1 = db.getReference("Пользователи").child(uid).child("level"); // Key

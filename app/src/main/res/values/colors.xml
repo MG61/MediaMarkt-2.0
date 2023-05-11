@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#ad2831</color>
-    <color name="purple_500">#ad2831</color>
+    <color name="background">#ada7c9</color>
+    <color name="purple_500">#ada7c9</color>
     <color name="purple_700">#2196f3</color>
     <color name="teal_200">#FF03DAC5</color>
     <color name="teal_700">#FF018786</color>
@@ -12,13 +12,17 @@
     <color name="colorAccent">#1E3AD6</color>
     <color name="transparent">#00000000</color>
 
-    <color name="home">#e63946</color>
+    <color name="home">#ada7c9</color>
     <color name="catalog">#f1faee</color>
     <color name="basket">#a8dadc</color>
     <color name="profile">#457b9d</color>
 
+
+    <color name="background_20">#33ADA7C9</color>
     <color name="home_20">#33E63946</color>
     <color name="catalog_20">#33F1FAEE</color>
     <color name="basket_20">#33A8DADC</color>
     <color name="profile_20">#33457B9D</color>
+
+
 </resources>
